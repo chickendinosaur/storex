@@ -18,7 +18,7 @@
     "url": "https://github.com/chickendinosaur"
   },
   "license": "MIT",
-  "description": "Storex is a simple, small, state distribution.",
+  "description": "Storex is a simple, small, state distribution for the front-end.",
   "keywords": [
     "action",
     "dispatcher",

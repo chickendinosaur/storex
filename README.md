@@ -1,6 +1,6 @@
 # Description  
 
-Storex is a simple, small, state distribution.
+Storex is a simple, small, state distribution for the front-end.
 
 ## Problem
 
@@ -9,8 +9,9 @@ Just like Flux and Redux the problem to solve is state management and distribute
 ## Goal
 
 - Keep it simple.
-- Similar functionality to the larger guys.
-- Outperform when state complexity grows.
+- Similar /apifunctionality to Redux.
+- Outperform on all occasions.
+- Get at least one star on https://github.com/chickendinosaur/storex
 
 ## Conclusion
 
