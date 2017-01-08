@@ -4,18 +4,18 @@ Storex is a simple, small, state distribution for the front-end.
 
 ## Problem
 
-Just like Flux and Redux the problem to solve is state management and distributed for the front-end. The problem that I am addressing is the features that make things a rather complicated and bog down performance when the state being managed grows to a larger size.
+Just like Flux and Redux the problem to solve is state management and distribution for the front-end. The problem that I am addressing is cutting the fat that makes things more complicated and bogs down performance when the state being managed gets out of hand.
 
 ## Goal
 
 - Keep it simple.
 - Similar /apifunctionality to Redux.
 - Outperform on all occasions.
-- Get at least one star on https://github.com/chickendinosaur/storex
+- Get at least one star for the project.
 
 ## Conclusion
 
-As of now the first implement is the bare minimum that gives the same base abilities of Redux at a smaller size and in my opinion cleaner implementation without having to added extra libraries. I will be using this in my project over the competition and will be looking into some ideas on being able to subscribe to updates to specific parts of the state without giving into a pattern like observing with tons of hooks. For now this gets the job done and makes life easy.
+As of now the first implement is the bare minimum that gives the same base abilities of Redux in a smaller package and in my opinion cleaner implementation without having to added extra libraries. I will be using this in my next projects and will be looking into some ideas on being able to subscribe to updates to specific parts of the state without giving into a pattern like observing with tons of hooks. For now this gets the job done and makes life easy.
 
 Why the name Storex? Because it's a store where 'x' can be anything and had to have an 'x' in the name to be as cool as the other guys.
 
