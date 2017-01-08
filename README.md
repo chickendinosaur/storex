@@ -38,8 +38,8 @@ Bundler used: browserify (action.js is not bundled)
 
 ### Storex
 
-1272 bytes 	minified
-549 bytes 	gzipped
+1272 bytes 	minified  
+549 bytes 	gzipped  
 
 ---  
 
