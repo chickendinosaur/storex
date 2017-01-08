@@ -9,7 +9,7 @@ Just like Flux and Redux the problem to solve is state management and distributi
 ## Goal
 
 - Keep it simple.
-- Similar /apifunctionality to Redux.
+- Similar api/functionality to Redux.
 - Outperform on all occasions.
 - Get at least one star for the project.
 
