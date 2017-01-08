@@ -1,0 +1,46 @@
+{
+  "name": "@chickendinosaur/storex",
+  "version": "1.0.0",
+  "main": "lib/store.js",
+  "scripts": {
+    "benchmark": "npm run benchmark-store",
+    "benchmark-store": "npm run test-store && node benchmark/store.js",
+    "build": "npm run clean && cp -rf src/* lib/",
+    "build-store": "cp -f src/store.js lib/store.js",
+    "clean": "rm -rf lib/*",
+    "prepublish": "npm run test",
+    "test": "npm run build && tap test/**/*.tap.js --reporter spec",
+    "test-store": "npm run build-store && tap test/store.tap.js  --reporter spec"
+  },
+  "author": {
+    "name": "John Pittman",
+    "email": "john@chickendinosaur.com",
+    "url": "https://github.com/chickendinosaur"
+  },
+  "license": "MIT",
+  "description": "Storex is a simple, small, state distribution.",
+  "keywords": [
+    "action",
+    "dispatcher",
+    "event",
+    "reducer",
+    "state",
+    "store"
+  ],
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chickendinosaur/storex.git"
+  },
+  "bugs": {
+    "url": "https://github.com/chickendinosaur/storex/issues"
+  },
+  "homepage": "https://github.com/chickendinosaur/storex#readme",
+  "module": {
+    "global": false
+  },
+  "devDependencies": {
+    "benchmark": "^2.1.3",
+    "tap": "^9.0.1"
+  }
+}
