@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/storex",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "lib/store.js",
   "scripts": {
     "benchmark": "npm run benchmark-store",
@@ -22,7 +22,9 @@
   "keywords": [
     "action",
     "dispatcher",
+    "distribution",
     "event",
+    "management",
     "reducer",
     "state",
     "store"
