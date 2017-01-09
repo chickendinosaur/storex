@@ -7,12 +7,10 @@
     "benchmark-store": "npm run test-store && node benchmark/store.benchmark.js",
     "build": "npm run clean && cp -rf src/* lib/",
     "build-store": "cp -f src/store.js lib/store.js",
-    "build-actions-transaction-action": "cp -f src/actions/transaction-action.js lib/actions/transaction-action.js",
     "clean": "rm -rf lib/*",
     "prepublish": "npm run test",
     "test": "npm run build && tap test/**/*.tap.js --reporter spec",
-    "test-store": "npm run build-store && tap test/store.tap.js  --reporter spec",
-    "test-actions-transaction-action": "npm run build-actions-transaction-action && tap test/actions/transaction-actionre.tap.js  --reporter spec"
+    "test-store": "npm run build-store && tap test/store.tap.js  --reporter spec"
   },
   "author": {
     "name": "John Pittman",

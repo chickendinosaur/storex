@@ -28,13 +28,11 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 ### Storex
 
 new Store(initialState) x 85,245,164 ops/sec  
-.dispatchAction(action1) x 35,164,983 ops/sec  
+.dispatchAction(action) x 35,164,983 ops/sec  
 
 ---  
 
 ## Overhead  
-
-Bundler used: browserify (action.js is not bundled)
 
 ### Storex  
 
@@ -57,8 +55,8 @@ npm install @chickendinosaur/storex
 
 ```javascript
 const createStore = require('@chickendinosaur/storex/createStore');
-const StoreAction = require('@chickendinosaur/storex/store-action');
-
+// Base action.
+const StoreAction = require('@chickendinosaur/storex/action');
 // Pre-made actions can be found at '@chickendinosaur/storex/actions'
 const TransactionAction = require('@chickendinosaur/storex/actions/transaction-action');
 
@@ -82,9 +80,10 @@ var store = new Store(initialState);
 
 store.addReducer(reducer);
 store.addSubscriber(subscriber);
-store.dispatchAction(new StoreAction('a', {
+store.dispatchAction(new TransactionAction('a', {
 		updated: true
-	}));
+	}),
+	'pending');
 store.removeReducer(reducer);
 store.removeSubscriber(subscriber);
 ```

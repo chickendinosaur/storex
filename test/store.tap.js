@@ -7,7 +7,7 @@ const afterEach = tap.afterEach;
 const teardown = tap.teardown;
 
 const Store = require('../src/store');
-const StoreAction = require('../src/store-action');
+const TransactionStoreAction = require('../src/actions/transaction-action');
 
 /*
 Setup.
@@ -84,14 +84,14 @@ test('.removeReducer', function (t) {
 test('.dispatchAction', function (t) {
 	store.addSubscriber(subscriber);
 	store.addReducer(reducer1);
-	store.dispatchAction(new StoreAction('a', {
+	store.dispatchAction(new TransactionStoreAction('a', {
 		updated: true
 	}));
 
 	t.equal(store.getState().a, true, 'State from reducer 1 updated.');
 
 	store.addReducer(reducer2);
-	store.dispatchAction(new StoreAction('b', {
+	store.dispatchAction(new TransactionStoreAction('b', {
 		updated: true
 	}));
 

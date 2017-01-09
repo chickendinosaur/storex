@@ -7,6 +7,6 @@ module.exports = {
 	// Folders.
 	Actions: require('./actions'),
 	// Files.
-	Action: require('./store-action'),
+	Action: require('./action'),
 	createStore: require('./createStore')
 };

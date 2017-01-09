@@ -3,7 +3,7 @@ Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
 const Store = require('../src/store');
-const StoreAction = require('../src/store-action');
+const TransactionAction = require('../src/actions/transaction-action');
 
 /*
 Setup.
@@ -46,7 +46,7 @@ suite
 		new Store(initialState);
 	})
 	.add('.dispatchAction(action1)', function () {
-		store.dispatchAction(new StoreAction('a', {
+		store.dispatchAction(new TransactionAction('a', {
 			updated: true
 		}));
 	})
