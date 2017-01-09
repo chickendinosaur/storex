@@ -8,5 +8,6 @@ module.exports = {
 	Actions: require('./actions'),
 	// Files.
 	Action: require('./action'),
-	createStore: require('./createStore')
+	createStore: require('./createStore'),
+	Store: require('./store')
 };
