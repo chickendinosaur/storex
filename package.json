@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/storex",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "main": "lib/index.js",
   "scripts": {
     "benchmark": "npm run benchmark-store",
