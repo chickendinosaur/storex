@@ -3,7 +3,7 @@ Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
 const Store = require('../src/store');
-const StoreAction = require('../src/action');
+const StoreAction = require('../src/store-action');
 
 /*
 Setup.
@@ -38,7 +38,7 @@ function teardown() {}
 console.log('');
 console.log('Benchmark');
 console.log('');
-console.log('benchmark/store.js');
+console.log('benchmark/store.benchmark.js');
 console.log('');
 
 suite

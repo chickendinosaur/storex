@@ -7,7 +7,7 @@ const afterEach = tap.afterEach;
 const teardown = tap.teardown;
 
 const Store = require('../src/store');
-const StoreAction = require('../src/action');
+const StoreAction = require('../src/store-action');
 
 /*
 Setup.

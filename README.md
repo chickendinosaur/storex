@@ -36,10 +36,12 @@ new Store(initialState) x 85,245,164 ops/sec
 
 Bundler used: browserify (action.js is not bundled)
 
-### Storex
+### Storex  
 
-1272 bytes 	minified  
-549 bytes 	gzipped  
+#### Stand-alone w/ actions (Browserify)
+
+2070 bytes 	minified  
+763 bytes 	gzipped  
 
 ---  
 
@@ -54,8 +56,11 @@ npm install @chickendinosaur/storex
 ## Usage
 
 ```javascript
-const Store = require('@chickendinosaur/storex');
-const StoreAction = require('@chickendinosaur/storex/action');
+const createStore = require('@chickendinosaur/storex/createStore');
+const StoreAction = require('@chickendinosaur/storex/store-action');
+
+// Pre-made actions can be found at '@chickendinosaur/storex/actions'
+const TransactionAction = require('@chickendinosaur/storex/actions/transaction-action');
 
 var initialState = {
 	a: 1,
