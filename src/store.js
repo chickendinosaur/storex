@@ -68,7 +68,7 @@ Store.prototype.dispatchAction = function (action) {
 
 		// If a reduce callback is found, execute it with the state,
 		if (reduceCallback !== undefined) {
-			reduceCallback(this._state, action);
+			reduceCallback.call(this, this._state, action);
 
 			// Dispatch the updated state to all subscribers.
 			i = 0;
