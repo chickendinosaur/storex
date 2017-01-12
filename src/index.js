@@ -11,3 +11,5 @@ module.exports = {
 	createStore: require('./createStore'),
 	Store: require('./store')
 };
+
+module.exports.default = module.exports;

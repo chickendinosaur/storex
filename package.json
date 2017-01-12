@@ -1,6 +1,7 @@
 {
   "name": "@chickendinosaur/storex",
   "version": "3.0.0",
+  "jsnext": "src/index.js",
   "main": "lib/index.js",
   "scripts": {
     "benchmark": "npm run benchmark-store",

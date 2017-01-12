@@ -39,7 +39,7 @@ var subscriber = function (state) {
 
 // Call the supplied function before every subsequent descendent test.
 beforeEach(function (done) {
-	store = new Store(initialState);
+	store = new Store(reducer1, initialState);
 
 	done();
 });
@@ -51,6 +51,12 @@ afterEach(function (done) {
 
 // Run the supplied function when t.end() is called, or when the plan is met.
 teardown(function () {});
+
+test('.setState', function (t) {
+	store.setState(null);
+	t.equal(store.getState(), null, 'State object changed.');
+	t.end();
+});
 
 test('.addSubscriber', function (t) {
 	store.addSubscriber(subscriber);
@@ -70,14 +76,14 @@ test('.removeSubscriber', function (t) {
 test('.addReducer', function (t) {
 	store.addReducer(reducer1);
 
-	t.equal(store._reducers.length, 1, 'Reducer added to reducers list.');
+	t.equal(store._reducers.length, 2, 'Reducer added to reducers list.');
 	t.end();
 });
 
 test('.removeReducer', function (t) {
 	store.removeReducer(reducer1);
 
-	t.equal(store._reducers.length, 0, 'Reducer removed to reducers list.');
+	t.equal(store._reducers.length, 0, 'Reducer removed from reducers list.');
 	t.end();
 });
 
