@@ -1,21 +1,18 @@
 # Description  
 
-Storex is a simple, small, state distribution for the front-end.
+Storex is a simple application state management system for the front-end.
 
 ## Problem
 
-Just like Flux and Redux the problem to solve is state management and distribution for the front-end. The problem that I am addressing is cutting the fat that makes things more complicated and bogs down performance when the state being managed gets out of hand.
+Just like Flux and Redux the problem to solve is state management and distribution for the front-end. The problem that I am addressing is cutting the fat that makes things more complicated and bogs down performance when the state being managed gets out of hand. Having to regenerate an entire app state each time is not cool.
 
 ## Goal
 
 - Keep it simple.
 - Similar api/functionality to Redux.
-- Outperform on all occasions.
-- Get at least one star for the project.
+- Outperform
 
-## Conclusion
-
-As of now the first implement is the bare minimum that gives the same base abilities of Redux in a smaller package and in my opinion cleaner implementation without having to added extra libraries. I will be using this in my next projects and will be looking into some ideas on being able to subscribe to updates to specific parts of the state without giving into a pattern like observing with tons of hooks. For now this gets the job done and makes life easy.
+## Thoughts
 
 Why the name Storex? Because it's a store where 'x' can be anything and had to have an 'x' in the name to be as cool as the other guys.
 
