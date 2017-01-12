@@ -39,6 +39,8 @@ npm install @chickendinosaur/storex
 
 ## Usage
 
+#### Basic:
+
 ```javascript
 const storex = require('@chickendinosaur/storex');
 // Base action.
@@ -72,6 +74,12 @@ store.dispatchAction(new TransactionAction('a', {
 	'pending');
 store.removeReducer(reducer);
 store.removeSubscriber(subscriber);
+```
+
+#### Creating a fresh state:
+
+```javascript
+store.setState({});
 ```
 ---  
 
