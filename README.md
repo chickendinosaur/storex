@@ -79,7 +79,15 @@ store.removeSubscriber(subscriber);
 #### Creating a fresh state:
 
 ```javascript
+// Store level.
 store.setState({});
+
+// From a reducer.
+var reducer = {
+	a: function (state, action) {
+		this.setState({});
+	}
+};
 ```
 ---  
 
