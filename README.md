@@ -32,17 +32,6 @@ new Store(initialState) x 85,245,164 ops/sec
 
 ---  
 
-## Overhead  
-
-### Storex  
-
-#### Stand-alone w/ actions (Browserify)
-
-2070 bytes 	minified  
-763 bytes 	gzipped  
-
----  
-
 # Getting Started  
 
 ## Installation
@@ -76,7 +65,7 @@ var subscriber = function (state) {
 	state.c = true;
 };
 
-var store = new Store(initialState);
+var store = new Store(reducer, initialState);
 
 store.addReducer(reducer);
 store.addSubscriber(subscriber);
