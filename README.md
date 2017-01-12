@@ -40,11 +40,11 @@ npm install @chickendinosaur/storex
 ## Usage
 
 ```javascript
-const createStore = require('@chickendinosaur/storex/createStore');
+const storex = require('@chickendinosaur/storex');
 // Base action.
-const StoreAction = require('@chickendinosaur/storex/action');
+const StoreAction = storex.Action;
 // Pre-made actions can be found at '@chickendinosaur/storex/actions'
-const TransactionAction = require('@chickendinosaur/storex/actions/transaction-action');
+const TransactionAction = storex.TransactionAction
 
 var initialState = {
 	a: 1,
