@@ -24,12 +24,14 @@ var initialState = {
 var reducer1 = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
+		this.setState(state);
 	}
 };
 
 var reducer2 = {
 	b: function (state, action) {
 		state.b = action.payload.updated;
+		this.setState(state);
 	}
 };
 

@@ -11,6 +11,7 @@ Having to regenerate an entire app state each time is not cool.
 - Keep it simple.
 - Similar api/functionality to Redux.
 - Outperform.
+- Leave it to the user to say when the state has been updated.
 
 ## Thoughts
 
@@ -24,8 +25,8 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 ### Storex
 
-new Store(initialState) x 85,245,164 ops/sec  
-.dispatchAction(action) x 35,164,983 ops/sec  
+new Store(initialState) x 45,061,306 ops/sec  
+.dispatchAction(action1) w/ .setState(state) x 20,164,919 ops/sec  
 
 ---  
 
@@ -62,6 +63,8 @@ var reducer = {
 
 var subscriber = function (state) {
 	state.c = true;
+	// Re-use the same top level state to avoid having to create a full state copy.
+	this.setState(state);
 };
 
 var store = new Store(reducer, initialState);

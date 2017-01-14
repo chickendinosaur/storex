@@ -18,6 +18,7 @@ var initialState = {
 var reducer = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
+		this.setState(state);
 	}
 };
 
@@ -25,8 +26,7 @@ var subscriber = function (state) {
 	state.c = true;
 };
 
-var store = new Store(initialState);
-store.addReducer(reducer);
+var store = new Store(reducer, initialState);
 store.addSubscriber(subscriber);
 
 /*
@@ -45,7 +45,7 @@ suite
 	.add('new Store(initialState)', function () {
 		new Store(initialState);
 	})
-	.add('.dispatchAction(action1)', function () {
+	.add('.dispatchAction(action1) w/ .setState(state)', function () {
 		store.dispatchAction(new TransactionAction('a', {
 			updated: true
 		}));

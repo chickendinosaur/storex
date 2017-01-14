@@ -44,6 +44,15 @@ Store.prototype.constructor = Store;
 */
 Store.prototype.setState = function (value) {
 	this._state = value;
+
+	// Dispatch the updated state to all subscribers.
+	var i = 0;
+	var n = this._subscribers.length;
+
+	while (i < n) {
+		this._subscribers[i](value);
+		++i;
+	}
 };
 
 /**
@@ -69,17 +78,6 @@ Store.prototype.dispatchAction = function (action) {
 		// If a reduce callback is found, execute it with the state,
 		if (reduceCallback !== undefined) {
 			reduceCallback.call(this, this._state, action);
-
-			// Dispatch the updated state to all subscribers.
-			i = 0;
-			n = this._subscribers.length;
-
-			while (i < n) {
-				this._subscribers[i](this._state);
-				++i;
-			}
-
-			// Finish.
 			break;
 		}
 
