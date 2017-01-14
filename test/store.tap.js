@@ -15,11 +15,7 @@ Setup.
 
 var store;
 
-var initialState = {
-	a: 1,
-	b: 'b data',
-	c: 'c'
-};
+var initialState;
 
 var reducer1 = {
 	a: function (state, action) {
@@ -42,6 +38,11 @@ var subscriber = function (state) {
 // Call the supplied function before every subsequent descendent test.
 beforeEach(function (done) {
 	store = new Store(reducer1, initialState);
+	initialState = {
+		a: 1,
+		b: 'b data',
+		c: 'c'
+	};
 
 	done();
 });
