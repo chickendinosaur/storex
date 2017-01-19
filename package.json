@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/storex",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "jsnext": "src/index.js",
   "main": "lib/index.js",
   "scripts": {
