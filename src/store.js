@@ -7,7 +7,8 @@
 */
 function Store(reducers, initialState) {
 	// Allow a single reducer to be passed.
-	if (reducers.constructor === Object) {
+	if (reducers !== undefined &&
+		reducers.constructor === Object) {
 		reducers = [reducers];
 	} else {
 		reducers = [];
