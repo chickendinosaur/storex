@@ -25,7 +25,7 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 ### Storex
 
-new Store(initialState) x 45,061,306 ops/sec  
+new Store(reducer, initialState) x 45,061,306 ops/sec  
 .dispatchAction(action1) w/ .setState(state) x 20,164,919 ops/sec  
 
 ---  
@@ -58,13 +58,13 @@ var initialState = {
 var reducer = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
+		// Re-use the same top level state to avoid having to create a full state copy.
+		this.setState(state);
 	}
 };
 
 var subscriber = function (state) {
 	state.c = true;
-	// Re-use the same top level state to avoid having to create a full state copy.
-	this.setState(state);
 };
 
 var store = new Store(reducer, initialState);
