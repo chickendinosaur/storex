@@ -31,10 +31,10 @@ function Store(reducers, initialState) {
 	this._reducers = reducers;
 
 	/**
-	@property _subscribers
+	@property _listeners
 	@type {Array}
 	*/
-	this._subscribers = [];
+	this._listeners = [];
 }
 
 Store.prototype.constructor = Store;
@@ -45,15 +45,6 @@ Store.prototype.constructor = Store;
 */
 Store.prototype.setState = function (value) {
 	this._state = value;
-
-	// Dispatch the updated state to all subscribers.
-	var i = 0;
-	var n = this._subscribers.length;
-
-	while (i < n) {
-		this._subscribers[i](value);
-		++i;
-	}
 };
 
 /**
@@ -71,12 +62,12 @@ Store.prototype.getState = function () {
 Store.prototype.dispatchAction = function (action) {
 	var i = 0;
 	var n = this._reducers.length;
-	var reduceCallback;
+	var reduceCallback = null;
 
 	while (i < n) {
 		reduceCallback = this._reducers[i][action.type];
 
-		// If a reduce callback is found, execute it with the state,
+		// If a reduce callback is found, execute it with the state.
 		if (reduceCallback !== undefined) {
 			reduceCallback.call(this, this._state, action);
 			break;
@@ -84,25 +75,34 @@ Store.prototype.dispatchAction = function (action) {
 
 		++i;
 	}
+
+	// Dispatch the updated state to all subscribers.
+	i = 0;
+	n = this._listeners.length;
+
+	while (i < n) {
+		this._listeners[i](this._state);
+		++i;
+	}
 };
 
 /**
-@method addSubscriber
+@method addStateListener
 @param {Function} subscriber
 */
-Store.prototype.addSubscriber = function (subscriber) {
-	this._subscribers[this._subscribers.length] = subscriber;
+Store.prototype.addStateListener = function (subscriber) {
+	this._listeners[this._listeners.length] = subscriber;
 };
 
 /**
-@method removeSubscriber
+@method removeStateListener
 @param {Function} subscriber
 */
-Store.prototype.removeSubscriber = function (subscriber) {
-	var index = this._subscribers.indexOf(subscriber);
+Store.prototype.removeStateListener = function (subscriber) {
+	var index = this._listeners.indexOf(subscriber);
 
 	if (index >= 0) {
-		this._subscribers.splice(index, 1);
+		this._listeners.splice(index, 1);
 	}
 };
 

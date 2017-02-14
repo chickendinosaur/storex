@@ -3,7 +3,7 @@ Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
 const Store = require('../src/store');
-const TransactionAction = require('../src/actions/transaction-action');
+const TransactionAction = require('../src/actions/transaction');
 
 /*
 Setup.
@@ -11,23 +11,31 @@ Setup.
 
 var initialState = {
 	a: 1,
-	b: 'b data',
-	c: 'c'
+	b: 'b data'
 };
 
 var reducer = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
-		this.setState(state);
+	},
+	b: function (state, action) {
+		state.a = action.payload.updated;
+	},
+	c: function (state, action) {
+		state.a = action.payload.updated;
+	},
+	d: function (state, action) {
+		state.a = action.payload.updated;
+	},
+	e: function (state, action) {
+		state.a = action.payload.updated;
 	}
 };
 
-var subscriber = function (state) {
-	state.c = true;
-};
+var subscriber = function (state) {};
 
 var store = new Store(reducer, initialState);
-store.addSubscriber(subscriber);
+store.addStateListener(subscriber);
 
 /*
 Teardown.
@@ -38,15 +46,15 @@ function teardown() {}
 console.log('');
 console.log('Benchmark');
 console.log('');
-console.log('benchmark/store.benchmark.js');
+console.log('benchmark/store.js');
 console.log('');
 
 suite
-	.add('new Store(initialState)', function () {
-		new Store(initialState);
+	.add('new Store(reducer, initialState)', function () {
+		new Store(reducer, initialState);
 	})
-	.add('.dispatchAction(action1) w/ .setState(state)', function () {
-		store.dispatchAction(new TransactionAction('a', {
+	.add('.dispatchAction(action1)', function () {
+		store.dispatchAction(new TransactionAction('e', {
 			updated: true
 		}));
 	})

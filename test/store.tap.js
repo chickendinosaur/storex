@@ -7,7 +7,7 @@ const afterEach = tap.afterEach;
 const teardown = tap.teardown;
 
 const Store = require('../src/store');
-const TransactionStoreAction = require('../src/actions/transaction-action');
+const TransactionStoreAction = require('../src/actions/transaction');
 
 /*
 Setup.
@@ -20,19 +20,17 @@ var initialState;
 var reducer1 = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
-		this.setState(state);
 	}
 };
 
 var reducer2 = {
 	b: function (state, action) {
 		state.b = action.payload.updated;
-		this.setState(state);
 	}
 };
 
 var subscriber = function (state) {
-	state.c = true;
+	state.d = true;
 };
 
 // Call the supplied function before every subsequent descendent test.
@@ -41,7 +39,8 @@ beforeEach(function (done) {
 	initialState = {
 		a: 1,
 		b: 'b data',
-		c: 'c'
+		c: 'c',
+		d: 'd'
 	};
 
 	done();
@@ -61,18 +60,18 @@ test('.setState', function (t) {
 	t.end();
 });
 
-test('.addSubscriber', function (t) {
-	store.addSubscriber(subscriber);
+test('.addStateListener', function (t) {
+	store.addStateListener(subscriber);
 
-	t.equal(store._subscribers.length, 1, 'Subscriber added to subscribers list.');
+	t.equal(store._listeners.length, 1, 'Subscriber added to subscribers list.');
 	t.end();
 });
 
-test('.removeSubscriber', function (t) {
-	store.addSubscriber(subscriber);
-	store.removeSubscriber(subscriber);
+test('.removeStateListener', function (t) {
+	store.addStateListener(subscriber);
+	store.removeStateListener(subscriber);
 
-	t.equal(store._subscribers.length, 0, 'Subscriber removed from subscribers list.');
+	t.equal(store._listeners.length, 0, 'Subscriber removed from subscribers list.');
 	t.end();
 });
 
@@ -91,13 +90,14 @@ test('.removeReducer', function (t) {
 });
 
 test('.dispatchAction', function (t) {
-	store.addSubscriber(subscriber);
+	store.addStateListener(subscriber);
 	store.addReducer(reducer1);
 	store.dispatchAction(new TransactionStoreAction('a', {
 		updated: true
 	}));
 
 	t.equal(store.getState().a, true, 'State from reducer 1 updated.');
+	t.equal(store.getState().d, true, 'Subscriber called.');
 
 	store.addReducer(reducer2);
 	store.dispatchAction(new TransactionStoreAction('b', {
@@ -105,6 +105,5 @@ test('.dispatchAction', function (t) {
 	}));
 
 	t.equal(store.getState().b, true, 'State from reducer 2 updated.');
-	t.equal(store.getState().c, true, 'Subscriber called.');
 	t.end();
 });

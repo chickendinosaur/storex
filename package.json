@@ -1,17 +1,13 @@
 {
   "name": "@chickendinosaur/storex",
   "version": "4.0.1",
-  "jsnext": "src/index.js",
   "main": "lib/index.js",
   "scripts": {
-    "benchmark": "npm run benchmark-store",
-    "benchmark-store": "npm run test-store && node benchmark/store.benchmark.js",
+    "benchmark": "npm run test && node benchmark/storex.js",
     "build": "npm run clean && cp -rf src/* lib/",
-    "build-store": "cp -f src/store.js lib/store.js",
     "clean": "rm -rf lib/*",
     "prepublish": "npm run test",
-    "test": "npm run build && tap test/**/*.tap.js --reporter spec",
-    "test-store": "npm run build-store && tap test/store.tap.js  --reporter spec"
+    "test": "npm run build && tap test/**/*.tap.js --reporter spec"
   },
   "author": {
     "name": "John Pittman",
@@ -19,7 +15,7 @@
     "url": "https://github.com/chickendinosaur"
   },
   "license": "MIT",
-  "description": "Storex is a simple, small, state distribution for the front-end.",
+  "description": "Simple state management system.",
   "keywords": [
     "action",
     "dispatcher",

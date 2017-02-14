@@ -10,8 +10,8 @@ Having to regenerate an entire app state each time is not cool.
 
 - Keep it simple.
 - Similar api/functionality to Redux.
-- Outperform.
-- Leave it to the user to say when the state has been updated.
+- Performance.
+- Allow the ability to create a fresh state each time like Redux.
 
 ## Thoughts
 
@@ -25,8 +25,17 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 ### Storex
 
-new Store(initialState) x 45,061,306 ops/sec  
-.dispatchAction(action1) w/ .setState(state) x 20,164,919 ops/sec  
+npm run benchmark  
+
+#### new Store(reducer, initialState) x 54,644,160 ops/sec  
+#### .dispatchAction(action1) x 21,935,044 ops/sec  
+
+### Redux
+
+node benchmark/redux.js
+
+#### Redux.createStore(reducer, initialState) x 762,368 ops/sec  
+#### .dispatch(action1) x 1,003,689 ops/sec  
 
 ---  
 
@@ -45,9 +54,9 @@ npm install @chickendinosaur/storex
 ```javascript
 const storex = require('@chickendinosaur/storex');
 // Base action.
-const StoreAction = storex.Action;
+const Action = require('@chickendinosaur/storex/action');
 // Pre-made actions can be found at '@chickendinosaur/storex/actions'
-const TransactionAction = storex.TransactionAction
+const TransactionAction = require('@chickendinosaur/storex/actions/transaction');
 
 var initialState = {
 	a: 1,
@@ -57,26 +66,26 @@ var initialState = {
 
 var reducer = {
 	a: function (state, action) {
-		state.a = action.payload.updated;
+		if (action.status === 'success') {
+			state.a = action.payload.updated;
+		}
 	}
 };
 
-var subscriber = function (state) {
-	state.c = true;
-	// Re-use the same top level state to avoid having to create a full state copy.
-	this.setState(state);
+var listener = function (state) {
+	console.log('State listener called.');
 };
 
 var store = new Store(reducer, initialState);
 
 store.addReducer(reducer);
-store.addSubscriber(subscriber);
+store.addStateListener(listener);
 store.dispatchAction(new TransactionAction('a', {
 		updated: true
 	}),
-	'pending');
+	'success');
 store.removeReducer(reducer);
-store.removeSubscriber(subscriber);
+store.removeSubscriber(listener);
 ```
 
 #### Creating a fresh state:
@@ -88,7 +97,9 @@ store.setState({});
 // From a reducer.
 var reducer = {
 	a: function (state, action) {
-		this.setState({});
+		this.setState({
+			a: 'hello'
+		});
 	}
 };
 ```
