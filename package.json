@@ -3,7 +3,7 @@
   "version": "5.0.3",
   "main": "lib/store.js",
   "files": [
-    "/lib"
+    "**/*.js"
   ],
   "scripts": {
     "benchmark": "npm run test && node src/store.benchmark.js",
