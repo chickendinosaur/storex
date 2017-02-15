@@ -7,7 +7,7 @@
     "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.spec.js,*.benchmark.js",
     "clean": "rm -rf lib && rm -rf build*",
     "prepublish": "npm run test",
-    "test": "npm run build && tap src/**/*.spec.js --reporter spec"
+    "test": "npm run build && tap build/**/*.spec.js --reporter spec"
   },
   "author": {
     "name": "John Pittman",
