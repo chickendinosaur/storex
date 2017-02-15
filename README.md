@@ -24,16 +24,16 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 npm run benchmark  
 
-new Store(reducer, initialState) x 57,347,274 ops/sec  
-.dispatchAction(action1) x 19,310,330 ops/sec  
+new Store(reducer, initialState)	x 57,347,274 ops/sec  
+.dispatchAction(action1)			x 19,310,330 ops/sec  
 
 ### Redux
 
 node benchmarks/redux.js  
 
 .createStore(reducer, initialState) x 741,343 ops/sec  
-.dispatch(action) x 872,241 ops/sec  
-.dispatch(action) /w Object.assign x 590,541 ops/sec  
+.dispatch(action) 					x 872,241 ops/sec  
+.dispatch(action) /w Object.assign 	x 590,541 ops/sec  
 
 ---  
 
