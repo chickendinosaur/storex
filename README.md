@@ -5,6 +5,7 @@ Simple and fast application state management system.
 ## Goal
 
 - Keep it simple.
+- No dependencies.
 - Similar api/functionality to Redux.
 - Performance.
 - Do no force creating a state copy to update state.
@@ -24,16 +25,16 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 npm run benchmark  
 
-new Store(reducer, initialState)	x 57,347,274 ops/sec  
-.dispatchAction(action1)			x 19,310,330 ops/sec  
+new Store(reducer, initialState) x 57,347,274 ops/sec  
+.dispatchAction(action1) x 19,310,330 ops/sec  
 
 ### Redux
 
 node benchmarks/redux.js  
 
 .createStore(reducer, initialState) x 741,343 ops/sec  
-.dispatch(action) 					x 872,241 ops/sec  
-.dispatch(action) /w Object.assign 	x 590,541 ops/sec  
+.dispatch(action) x 872,241 ops/sec  
+.dispatch(action) /w Object.assign x 590,541 ops/sec  
 
 ---  
 
@@ -137,9 +138,33 @@ store.use(function (state) {
 
 * npm run test
 
+## Deploy
+
+* npm run deploy
+
 ---  
 
 # License  
 
-test
+The MIT License (MIT)
+
+Copyright (c) 2016 John Pittman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
 
