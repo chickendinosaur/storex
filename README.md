@@ -27,7 +27,7 @@ npm run benchmark
 #### new Store(reducer, initialState) x 57,347,274 ops/sec  
 #### .dispatchAction(action1) x 19,310,330 ops/sec  
 
-### Storex
+### Redux
 
 node benchmarks/redux.js  
 
