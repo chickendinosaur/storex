@@ -10,24 +10,11 @@ Setup.
 */
 
 var initialState = {
-	a: 1,
-	b: 'b data'
+	a: 1
 };
 
 var reducer = {
 	a: function (state, action) {
-		state.a = action.payload.updated;
-	},
-	b: function (state, action) {
-		state.a = action.payload.updated;
-	},
-	c: function (state, action) {
-		state.a = action.payload.updated;
-	},
-	d: function (state, action) {
-		state.a = action.payload.updated;
-	},
-	e: function (state, action) {
 		state.a = action.payload.updated;
 	}
 };
@@ -51,7 +38,7 @@ suite
 	.add('new Store(reducer, initialState)', function () {
 		new Store(reducer, initialState);
 	})
-	.add('.dispatchAction(action1)', function () {
+	.add('.dispatchAction(action)', function () {
 		store.dispatchAction(new TransactionAction('e', {
 			updated: true
 		}));
