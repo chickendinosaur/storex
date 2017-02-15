@@ -2,6 +2,9 @@
   "name": "@chickendinosaur/storex",
   "version": "5.0.2",
   "main": "lib/store.js",
+  "files": [
+    "lib/"
+  ],
   "scripts": {
     "benchmark": "npm run test && node src/store.benchmark.js",
     "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.spec.js,*.benchmark.js",
