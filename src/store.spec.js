@@ -3,11 +3,9 @@
 const tap = require('tap');
 const test = tap.test;
 const beforeEach = tap.beforeEach;
-const afterEach = tap.afterEach;
-const teardown = tap.teardown;
 
-const Store = require('../src/store');
-const TransactionStoreAction = require('../src/actions/transaction');
+const Store = require('./store');
+const TransactionStoreAction = require('./actions/transaction');
 
 /*
 Setup.
@@ -45,14 +43,6 @@ beforeEach(function (done) {
 
 	done();
 });
-
-// Call the supplied function after every subsequent descendent test.
-afterEach(function (done) {
-	done();
-});
-
-// Run the supplied function when t.end() is called, or when the plan is met.
-teardown(function () {});
 
 test('.setState', function (t) {
 	store.setState(null);

@@ -1,13 +1,13 @@
 {
   "name": "@chickendinosaur/storex",
   "version": "5.0.1",
-  "main": "lib/index.js",
+  "main": "lib/store.js",
   "scripts": {
-    "benchmark": "npm run test && node benchmark/storex.js",
-    "build": "npm run clean && cp -rf src/* lib/",
-    "clean": "rm -rf lib/*",
+    "benchmark": "npm run test && node src/store.benchmark.js",
+    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.spec.js,*.benchmark.js",
+    "clean": "rm -rf lib && rm -rf build*",
     "prepublish": "npm run test",
-    "test": "npm run build && tap test/**/*.tap.js --reporter spec"
+    "test": "npm run build && tap src/**/*.spec.js --reporter spec"
   },
   "author": {
     "name": "John Pittman",
@@ -39,6 +39,8 @@
     "global": false
   },
   "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
     "benchmark": "^2.1.3",
     "tap": "^9.0.1"
   }

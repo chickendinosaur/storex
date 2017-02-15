@@ -1,5 +1,7 @@
 'use strict';
 
+module.exports = Store;
+
 /**
 @class Store
 @constructor
@@ -125,5 +127,3 @@ Store.prototype.removeReducer = function (reducer) {
 		this._reducers.splice(index, 1);
 	}
 };
-
-module.exports = Store;

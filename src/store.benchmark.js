@@ -1,9 +1,9 @@
 require('lodash');
-Benchmark = require('benchmark');
+const Benchmark = require('benchmark');
 const suite = new Benchmark.Suite;
 
-const Store = require('../src/store');
-const TransactionAction = require('../src/actions/transaction');
+const Store = require('./store');
+const TransactionAction = require('./actions/transaction');
 
 /*
 Setup.
