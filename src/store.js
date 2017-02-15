@@ -16,10 +16,6 @@ function Store(reducers, initialState) {
 		reducers = [];
 	}
 
-	if (initialState === undefined) {
-		initialState = {};
-	}
-
 	/**
 	@property _state
 	@type {*}
@@ -36,26 +32,16 @@ function Store(reducers, initialState) {
 	@property _listeners
 	@type {Array}
 	*/
-	this._listeners = [];
+	this._listeners = null;
+
+	/**
+	@property _middleware
+	@type {Array}
+	*/
+	this._middleware = null;
 }
 
 Store.prototype.constructor = Store;
-
-/**
-@method setState
-@return {*}
-*/
-Store.prototype.setState = function (value) {
-	this._state = value;
-};
-
-/**
-@method getState
-@return {*}
-*/
-Store.prototype.getState = function () {
-	return this._state;
-};
 
 /**
 @method dispatchAction
@@ -78,38 +64,71 @@ Store.prototype.dispatchAction = function (action) {
 		++i;
 	}
 
-	// Dispatch the updated state to all subscribers.
-	i = 0;
-	n = this._listeners.length;
+	// Run middleware.
+	if (this._middleware !== null) {
+		i = 0;
+		n = this._middleware.length;
 
-	while (i < n) {
-		this._listeners[i](this._state);
-		++i;
+		while (i < n) {
+			this._middleware[i].call(this, this._state);
+			++i;
+		}
 	}
+
+	// Dispatch the updated state to all listeners.
+	if (this._listeners !== null) {
+		i = 0;
+		n = this._listeners.length;
+
+		while (i < n) {
+			this._listeners[i].call(this, this._state);
+			++i;
+		}
+	}
+};
+
+/**
+@method getState
+@return {*}
+*/
+Store.prototype.getState = function () {
+	return this._state;
+};
+
+/**
+@method setState
+@return {*}
+*/
+Store.prototype.setState = function (value) {
+	this._state = value;
 };
 
 /**
 @method addStateListener
-@param {Function} subscriber
+@param {Function} listener
 */
-Store.prototype.addStateListener = function (subscriber) {
-	this._listeners[this._listeners.length] = subscriber;
+Store.prototype.addStateListener = function (listener) {
+	if (this._listeners === null) {
+		this._listeners = [];
+	}
+
+	this._listeners[this._listeners.length] = listener;
 };
 
 /**
 @method removeStateListener
-@param {Function} subscriber
+@param {Function} listener
 */
-Store.prototype.removeStateListener = function (subscriber) {
-	var index = this._listeners.indexOf(subscriber);
-
-	if (index >= 0) {
-		this._listeners.splice(index, 1);
+Store.prototype.removeStateListener = function (listener) {
+	if (this._listeners.length === 1) {
+		this._listeners = null;
+	} else {
+		this._listeners.splice(this._listeners.indexOf(listener), 1);
 	}
 };
 
 /**
-@method addSubscriber
+@method addReducer
 @param {Object} reducer
 */
 Store.prototype.addReducer = function (reducer) {
@@ -121,9 +140,17 @@ Store.prototype.addReducer = function (reducer) {
 @param {Object} reducer
 */
 Store.prototype.removeReducer = function (reducer) {
-	var index = this._reducers.indexOf(reducer);
+	this._reducers.splice(this._reducers.indexOf(reducer), 1);
+};
 
-	if (index >= 0) {
-		this._reducers.splice(index, 1);
+/**
+@method use
+@param {Function} middleware
+*/
+Store.prototype.use = function (middleware) {
+	if (this._middleware === null) {
+		this._middleware = [];
 	}
+
+	this._middleware[this._middleware.length] = middleware;
 };

@@ -33,13 +33,14 @@ var subscriber = function (state) {
 
 // Call the supplied function before every subsequent descendent test.
 beforeEach(function (done) {
-	store = new Store(reducer1, initialState);
 	initialState = {
 		a: 1,
 		b: 'b data',
 		c: 'c',
 		d: 'd'
 	};
+
+	store = new Store(reducer1, initialState);
 
 	done();
 });
@@ -59,9 +60,12 @@ test('.addStateListener', function (t) {
 
 test('.removeStateListener', function (t) {
 	store.addStateListener(subscriber);
-	store.removeStateListener(subscriber);
+	store.addStateListener(subscriber);
 
-	t.equal(store._listeners.length, 0, 'Subscriber removed from subscribers list.');
+	store.removeStateListener(subscriber);
+	t.equal(store._listeners.length, 1, 'Listener removed from subscribers list.');
+	store.removeStateListener(subscriber);
+	t.equal(store._listeners, null, 'Last listener was removed.');
 	t.end();
 });
 
@@ -95,5 +99,15 @@ test('.dispatchAction', function (t) {
 	}));
 
 	t.equal(store.getState().b, true, 'State from reducer 2 updated.');
+	t.end();
+});
+
+test('.use', function (t) {
+	store.use(subscriber);
+	store.dispatchAction(new TransactionStoreAction('a', {
+		updated: true
+	}));
+
+	t.equal(store.getState().d, true, 'Middleware executed.');
 	t.end();
 });

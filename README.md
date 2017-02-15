@@ -1,17 +1,14 @@
 # Description  
 
-Storex is a simple application state management system for the front-end.
-
-## Problem
-
-Having to regenerate an entire app state each time is not cool.
+Storex is a simple application state management system.
 
 ## Goal
 
 - Keep it simple.
 - Similar api/functionality to Redux.
 - Performance.
-- Allow the ability to create a fresh state each time like Redux.
+- Do no force creating a state copy to update state.
+- Allow middleware.
 
 ## Thoughts
 
@@ -27,8 +24,8 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 npm run benchmark  
 
-#### new Store(reducer, initialState) x 54,644,160 ops/sec  
-#### .dispatchAction(action1) x 21,935,044 ops/sec  
+#### new Store(reducer, initialState) x 57,347,274 ops/sec  
+#### .dispatchAction(action1) x 19,310,330 ops/sec  
 
 ---  
 
@@ -83,6 +80,8 @@ store.removeSubscriber(listener);
 
 #### Creating a fresh state:
 
+If you have the need to recreate a new instance of state there's .setState().
+
 ```javascript
 // Store level.
 store.setState({});
@@ -95,6 +94,18 @@ var reducer = {
 		});
 	}
 };
+```
+
+#### Middleware:
+
+Storex provides the ability to inject middleware between state dispatches.
+This can allow for state tracking debug functionality etc.
+
+```javascript
+store.use(function (state) {
+	console.log(state);
+	console.log(this.getState());
+});
 ```
 ---  
 

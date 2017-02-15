@@ -44,9 +44,7 @@ Teardown.
 function teardown() {}
 
 console.log('');
-console.log('Benchmark');
-console.log('');
-console.log('benchmark/store.js');
+console.log('store.benchmark.js');
 console.log('');
 
 suite

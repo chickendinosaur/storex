@@ -1,16 +1,15 @@
 {
   "name": "@chickendinosaur/storex",
   "version": "5.0.5",
-  "main": "lib/store.js",
+  "main": "store.js",
   "files": [
     "**/*.js"
   ],
   "scripts": {
     "benchmark": "npm run test && node src/store.benchmark.js",
-    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.spec.js,*.benchmark.js && cp -f package.json lib",
+    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp -f package.json lib",
     "clean": "rm -rf lib && rm -rf build*",
-    "prepublish": "npm run test",
-    "publish": "cd lib && npm publish",
+    "deploy": "npm run test && npm publish lib/",
     "test": "npm run build && tap build/**/*.spec.js --reporter spec"
   },
   "author": {
