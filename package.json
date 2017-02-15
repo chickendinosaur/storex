@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/storex",
-  "version": "5.0.1",
+  "version": "5.0.2",
   "main": "lib/store.js",
   "scripts": {
     "benchmark": "npm run test && node src/store.benchmark.js",
