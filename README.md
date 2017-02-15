@@ -1,6 +1,6 @@
 # Description  
 
-Storex is a simple application state management system.
+Simple and fast application state management system.
 
 ## Goal
 
