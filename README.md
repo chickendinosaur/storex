@@ -21,14 +21,14 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 ## Performance  
 
-### Storex
+### @chickendinosaur/storex
 
 npm run benchmark  
 
 new Store(reducer, initialState) x 62,014,291 ops/sec  
 .dispatchAction(action) x 24,105,684 ops/sec  
 
-### Redux
+### redux
 
 node benchmarks/redux.js  
 
@@ -44,7 +44,7 @@ Browserify (minified)
 
 1752 bytes  
 
-### inferno-redux
+### redux
 
 Browserify (minified)  
 
