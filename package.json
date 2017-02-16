@@ -1,6 +1,6 @@
 {
   "name": "@chickendinosaur/storex",
-  "version": "5.1.2",
+  "version": "5.1.3",
   "main": "store.js",
   "files": [
     "**/*.js"
