@@ -36,6 +36,20 @@ node benchmarks/redux.js
 .dispatch(action) x 1,021,774 ops/sec  
 .dispatch(action) /w Object.assign x 671,355 ops/sec  
 
+## Overhead  
+
+### @chickendinosaur/storex
+
+Browserify (minified)  
+
+1752 bytes  
+
+### inferno-redux
+
+Browserify (minified)  
+
+12318 bytes  
+
 ---  
 
 # Getting Started  
