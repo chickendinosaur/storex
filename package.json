@@ -7,7 +7,7 @@
   ],
   "scripts": {
     "benchmark": "cd src & for /R %i in (*.benchmark.js) do echo. & echo %i & echo. & babel %i | node",
-    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp -f package.json lib",
+    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
     "clean": "rm -rf lib && rm -rf build*",
     "deploy": "npm run test && npm publish lib/",
     "test": "npm run build && tape build/**/*.spec.js | tap-spec"
