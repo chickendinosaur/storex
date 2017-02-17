@@ -10,7 +10,7 @@
     "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
     "clean": "rm -rf lib && rm -rf build*",
     "deploy": "npm run test && npm run build && npm publish lib/",
-    "test": "cd src & babel **/*.spec.js | node | tap-spec"
+    "test": "cd src & for /R %i in (*.spec.js) do babel %i | node | tap-spec"
   },
   "author": {
     "name": "John Pittman",
