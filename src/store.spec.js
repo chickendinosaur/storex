@@ -94,7 +94,9 @@ test('Store', function (t) {
 
 	t.test('.addReducer', function (t) {
 		store.addReducer(reducer1);
+		t.equal(store._reducers.length, 1, 'Same reducer cannot be added more than once.');
 
+		store.addReducer(reducer2);
 		t.equal(store._reducers.length, 2, 'Reducer added to reducers list.');
 		t.end();
 	});
