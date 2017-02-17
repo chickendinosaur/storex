@@ -132,7 +132,9 @@ Store.prototype.removeStateListener = function (listener) {
 @param {Object} reducer
 */
 Store.prototype.addReducer = function (reducer) {
-	this._reducers[this._reducers.length] = reducer;
+	if (this._reducers.indexOf(reducer) === -1) {
+		this._reducers[this._reducers.length] = reducer;
+	}
 };
 
 /**
