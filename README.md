@@ -8,7 +8,7 @@ Simple and fast application state management system.
 - No dependencies.
 - Similar api/functionality to Redux.
 - Performance.
-- Do no force creating a state copy to update state.
+- Do not force creating a state copy to update state.
 - Allow middleware.
 
 ## Thoughts
