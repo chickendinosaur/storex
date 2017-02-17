@@ -3,15 +3,15 @@
 const tape = require('tape');
 const tapes = require('tapes');
 const test = tapes(tape, {
-	delimiter: ' '
+	delimiter: '->'
 });
-
-const Store = require('./store');
-const TransactionStoreAction = require('./actions/transaction');
 
 /*
 Setup.
 */
+
+const Store = require('./store');
+const TransactionStoreAction = require('./actions/transaction');
 
 var store;
 
