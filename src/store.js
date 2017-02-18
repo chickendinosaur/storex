@@ -67,7 +67,7 @@ Store.prototype.dispatchAction = function (action) {
 		i = this._middleware.length - 1;
 
 		while (i >= 0) {
-			this._middleware[i].call(this, this._state);
+			this._middleware[i].call(this, this._state, action);
 			--i;
 		}
 	}
