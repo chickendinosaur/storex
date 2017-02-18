@@ -45,7 +45,7 @@ suite
 	.on('cycle', function (event) {
 		var output = String(event.target);
 		output = output.substring(0, output.indexOf('ops/sec') + 7);
-		console.log('\x1b[33m%s\x1b[0m', '\t' + output);
+		console.log('\x1b[33m%s\x1b[0m', output);
 	})
 	.on('complete', function () {
 		if (isBrowser) {

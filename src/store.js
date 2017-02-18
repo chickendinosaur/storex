@@ -48,11 +48,10 @@ Store.prototype.constructor = Store;
 @param {Action} action
 */
 Store.prototype.dispatchAction = function (action) {
-	var i = 0;
-	var n = this._reducers.length;
 	var reduceCallback = null;
+	var i = this._reducers.length - 1;
 
-	while (i < n) {
+	while (i >= 0) {
 		reduceCallback = this._reducers[i][action.type];
 
 		// If a reduce callback is found, execute it with the state.
@@ -60,29 +59,26 @@ Store.prototype.dispatchAction = function (action) {
 			reduceCallback.call(this, this._state, action);
 			break;
 		}
-
-		++i;
+		--i;
 	}
 
 	// Run middleware.
 	if (this._middleware !== null) {
-		i = 0;
-		n = this._middleware.length;
+		i = this._middleware.length - 1;
 
-		while (i < n) {
+		while (i >= 0) {
 			this._middleware[i].call(this, this._state);
-			++i;
+			--i;
 		}
 	}
 
 	// Dispatch the updated state to all listeners.
 	if (this._listeners !== null) {
-		i = 0;
-		n = this._listeners.length;
+		i = this._listeners.length - 1;
 
-		while (i < n) {
+		while (i >= 0) {
 			this._listeners[i].call(this, this._state);
-			++i;
+			--i;
 		}
 	}
 };
