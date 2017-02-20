@@ -77,7 +77,7 @@ test('Store', function (t) {
 	t.test('.addStateListener', function (t) {
 		store.addStateListener(subscriber);
 
-		t.equal(store._listeners.length, 1, 'Subscriber added to subscribers list.');
+		t.equal(store._stateListeners.length, 1, 'Subscriber added to subscribers list.');
 		t.end();
 	});
 
@@ -86,9 +86,9 @@ test('Store', function (t) {
 		store.addStateListener(subscriber);
 
 		store.removeStateListener(subscriber);
-		t.equal(store._listeners.length, 1, 'Listener removed from subscribers list.');
+		t.equal(store._stateListeners.length, 1, 'Listener removed from subscribers list.');
 		store.removeStateListener(subscriber);
-		t.equal(store._listeners, null, 'Last listener was removed.');
+		t.equal(store._stateListeners, null, 'Last listener was removed.');
 		t.end();
 	});
 
@@ -124,16 +124,6 @@ test('Store', function (t) {
 		}));
 
 		t.equal(store.getState().b, true, 'State from reducer 2 updated.');
-		t.end();
-	});
-
-	t.test('.use', function (t) {
-		store.use(subscriber);
-		store.dispatchAction(new TransactionStoreAction('a', {
-			updated: true
-		}));
-
-		t.equal(store.getState().d, true, 'Middleware executed.');
 		t.end();
 	});
 

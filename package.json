@@ -6,11 +6,11 @@
     "**/*.js"
   ],
   "scripts": {
-    "benchmark": "cd src & for /R %i in (*.benchmark.js) do echo. & echo %i & echo. & babel %i | node",
+    "benchmark": "tape src/**/*.benchmark.js",
     "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
     "clean": "rm -rf lib && rm -rf build*",
     "deploy": "npm run test && npm run build && npm publish lib/",
-    "test": "cd src & for /R %i in (*.spec.js) do babel %i | node | tap-spec"
+    "test": "tape src/**/*.test.js | tap-spec"
   },
   "author": {
     "name": "John Pittman",
@@ -45,9 +45,13 @@
     "babel-cli": "^6.23.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
     "benchmark": "^2.1.3",
-    "redux": "^3.6.0",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "tapes": "^4.1.0"
-  }
+  },
+  "generator-module": {
+    "global": false
+  },
+  "peerDependencies": {},
+  "dependencies": {}
 }

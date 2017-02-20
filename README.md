@@ -9,7 +9,6 @@ Simple and fast application state management system.
 - Similar api/functionality to Redux.
 - Performance.
 - Do not force creating a state copy to update state.
-- Allow middleware.
 
 ## Thoughts
 
@@ -117,18 +116,6 @@ var reducer = {
 		});
 	}
 };
-```
-
-#### Middleware:
-
-Storex provides the ability to inject middleware between state dispatches.
-This can allow for state tracking debug functionality etc.
-
-```javascript
-store.use(function (state) {
-	console.log(state);
-	console.log(this.getState());
-});
 ```
 ---  
 

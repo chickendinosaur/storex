@@ -29,16 +29,10 @@ function Store(reducers, initialState) {
 	this._reducers = reducers;
 
 	/**
-	@property _listeners
+	@property _stateListeners
 	@type {Array}
 	*/
-	this._listeners = null;
-
-	/**
-	@property _middleware
-	@type {Array}
-	*/
-	this._middleware = null;
+	this._stateListeners = null;
 }
 
 Store.prototype.constructor = Store;
@@ -62,22 +56,12 @@ Store.prototype.dispatchAction = function (action) {
 		--i;
 	}
 
-	// Run middleware.
-	if (this._middleware !== null) {
-		i = this._middleware.length - 1;
-
-		while (i >= 0) {
-			this._middleware[i].call(this, this._state, action);
-			--i;
-		}
-	}
-
 	// Dispatch the updated state to all listeners.
-	if (this._listeners !== null) {
-		i = this._listeners.length - 1;
+	if (this._stateListeners !== null) {
+		i = this._stateListeners.length - 1;
 
 		while (i >= 0) {
-			this._listeners[i].call(this, this._state);
+			this._stateListeners[i].call(this, this._state);
 			--i;
 		}
 	}
@@ -104,11 +88,11 @@ Store.prototype.setState = function (value) {
 @param {Function} listener
 */
 Store.prototype.addStateListener = function (listener) {
-	if (this._listeners === null) {
-		this._listeners = [];
+	if (this._stateListeners === null) {
+		this._stateListeners = [];
 	}
 
-	this._listeners[this._listeners.length] = listener;
+	this._stateListeners[this._stateListeners.length] = listener;
 };
 
 /**
@@ -116,10 +100,10 @@ Store.prototype.addStateListener = function (listener) {
 @param {Function} listener
 */
 Store.prototype.removeStateListener = function (listener) {
-	if (this._listeners.length === 1) {
-		this._listeners = null;
+	if (this._stateListeners.length === 1) {
+		this._stateListeners = null;
 	} else {
-		this._listeners.splice(this._listeners.indexOf(listener), 1);
+		this._stateListeners.splice(this._stateListeners.indexOf(listener), 1);
 	}
 };
 
@@ -139,16 +123,4 @@ Store.prototype.addReducer = function (reducer) {
 */
 Store.prototype.removeReducer = function (reducer) {
 	this._reducers.splice(this._reducers.indexOf(reducer), 1);
-};
-
-/**
-@method use
-@param {Function} middleware
-*/
-Store.prototype.use = function (middleware) {
-	if (this._middleware === null) {
-		this._middleware = [];
-	}
-
-	this._middleware[this._middleware.length] = middleware;
 };
