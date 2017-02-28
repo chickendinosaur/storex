@@ -20,12 +20,14 @@ var initialState;
 var reducer1 = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
+		return state;
 	}
 };
 
 var reducer2 = {
 	b: function (state, action) {
 		state.b = action.payload.updated;
+		return state;
 	}
 };
 

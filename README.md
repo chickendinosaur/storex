@@ -24,8 +24,8 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 npm run benchmark  
 
-new Store(reducer, initialState) x 61,938,719 ops/sec  
-.dispatchAction(action) x 25,008,034 ops/sec  
+new Store(reducer, initialState) x 52,819,912 ops/sec  
+.dispatchAction(action) x 20,172,162 ops/sec  
 
 ### redux
 
@@ -63,6 +63,9 @@ npm install @chickendinosaur/storex
 
 #### Basic:
 
+// The store will only run state subscribers/listeners if state is return from a
+// reducer callback.
+
 ```javascript
 const storex = require('@chickendinosaur/storex');
 // Base action.
@@ -80,6 +83,7 @@ var reducer = {
 	a: function (state, action) {
 		if (action.status === 'success') {
 			state.a = action.payload.updated;
+			return state;
 		}
 	}
 };
@@ -102,18 +106,15 @@ store.removeSubscriber(listener);
 
 #### Creating a fresh state:
 
-If you have the need to recreate a new instance of state there's .setState().
+Returning a new object from a reducer callback set's the store state.
 
 ```javascript
-// Store level.
-store.setState({});
-
 // From a reducer.
 var reducer = {
 	a: function (state, action) {
-		this.setState({
-			a: 'hello'
-		});
+		return {
+			a: 'newA'
+		}
 	}
 };
 ```

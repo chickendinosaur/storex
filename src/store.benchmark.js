@@ -21,6 +21,7 @@ var initialState = {
 var reducer = {
 	a: function (state, action) {
 		state.a = action.payload.updated;
+		return state;
 	}
 };
 
@@ -38,7 +39,7 @@ suite
 		new Store(reducer, initialState);
 	})
 	.add('.dispatchAction(action)', function () {
-		store.dispatchAction(new TransactionAction('e', {
+		store.dispatchAction(new TransactionAction('a', {
 			updated: true
 		}));
 	})

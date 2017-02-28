@@ -9,9 +9,12 @@ module.exports = Store;
 */
 function Store(reducers, initialState) {
 	// Allow a single reducer to be passed.
-	if (reducers !== undefined &&
-		reducers.constructor === Object) {
-		reducers = [reducers];
+	if (reducers) {
+		if (reducers.constructor === Array) {
+			reducers[reducers.length] = reducers;
+		} else {
+			reducers = [reducers];
+		}
 	} else {
 		reducers = [];
 	}
@@ -20,7 +23,7 @@ function Store(reducers, initialState) {
 	@property _state
 	@type {*}
 	*/
-	this._state = initialState;
+	this._state = initialState || {};
 
 	/**
 	@property _reducers
@@ -35,8 +38,6 @@ function Store(reducers, initialState) {
 	this._stateListeners = null;
 }
 
-Store.prototype.constructor = Store;
-
 /**
 @method dispatchAction
 @param {Action} action
@@ -44,28 +45,44 @@ Store.prototype.constructor = Store;
 Store.prototype.dispatchAction = function (action) {
 	var reduceCallback = null;
 	var i = this._reducers.length - 1;
+	var stateDidUpdate = false;
 
 	while (i >= 0) {
 		reduceCallback = this._reducers[i][action.type];
 
 		// If a reduce callback is found, execute it with the state.
 		if (reduceCallback !== undefined) {
-			reduceCallback.call(this, this._state, action);
-			break;
+			var updatedState = reduceCallback.call(this, this._state, action);
+
+			if (updatedState !== undefined) {
+				this._state = updatedState;
+				stateDidUpdate = true;
+			}
 		}
+
 		--i;
 	}
 
-	// Dispatch the updated state to all listeners.
+	if (stateDidUpdate == true) {
+		this.dispatchState(this._state);
+	}
+};
+
+/**
+Dispatch the current state to all state listeners.
+@method dispatchState
+@param {State} state
+*/
+Store.prototype.dispatchState = function (state) {
 	if (this._stateListeners !== null) {
-		i = this._stateListeners.length - 1;
+		var i = this._stateListeners.length - 1;
 
 		while (i >= 0) {
-			this._stateListeners[i].call(this, this._state);
+			this._stateListeners[i].call(this, state);
 			--i;
 		}
 	}
-};
+}
 
 /**
 @method getState
@@ -81,6 +98,7 @@ Store.prototype.getState = function () {
 */
 Store.prototype.setState = function (value) {
 	this._state = value;
+	this.dispatchState(value);
 };
 
 /**
