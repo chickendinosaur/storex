@@ -7,7 +7,7 @@ Simple and fast application state management system.
 - No dependencies.
 - Similar api/functionality to Redux.
 - Do not force creating a state copy to update state.
-- OOD design for extendability.
+- OOD design for extensibility.
 
 ## Thoughts
 
