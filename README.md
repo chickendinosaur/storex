@@ -109,13 +109,13 @@ Returning a new object from a reducer callback set's the store state.
 
 ```javascript
 // From a reducer.
-var reducer = {
+var reducer = new Reducer({
 	a: function (state, action) {
 		return {
 			a: 'newA'
 		}
 	}
-};
+});
 ```
 ---  
 
