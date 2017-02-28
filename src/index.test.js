@@ -11,25 +11,26 @@ Setup.
 */
 
 const Store = require('./store');
+const Reducer = require('./reducer');
 const TransactionStoreAction = require('./actions/transaction');
 
 var store;
 
 var initialState;
 
-var reducer1 = {
+var reducer1 = new Reducer({
 	a: function (state, action) {
 		state.a = action.payload.updated;
 		return state;
 	}
-};
+});
 
-var reducer2 = {
+var reducer2 = new Reducer({
 	b: function (state, action) {
 		state.b = action.payload.updated;
 		return state;
 	}
-};
+});
 
 var subscriber = function (state) {
 	state.d = true;

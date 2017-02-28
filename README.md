@@ -4,11 +4,10 @@ Simple and fast application state management system.
 
 ## Goal
 
-- Keep it simple.
 - No dependencies.
 - Similar api/functionality to Redux.
-- Performance.
 - Do not force creating a state copy to update state.
+- OOD design for extendability.
 
 ## Thoughts
 
@@ -24,8 +23,8 @@ Why the name Storex? Because it's a store where 'x' can be anything and had to h
 
 npm run benchmark  
 
-new Store(reducer, initialState) x 52,819,912 ops/sec  
-.dispatchAction(action) x 20,172,162 ops/sec  
+new Store(reducer, initialState) x 19,719,847 ops/sec  
+.dispatchAction(action) x 19,714,141 ops/sec  
 
 ### redux
 
@@ -41,7 +40,7 @@ node benchmarks/redux.js
 
 Browserify (minified)  
 
-1752 bytes  
+2103 bytes  
 
 ### redux
 
@@ -63,15 +62,15 @@ npm install @chickendinosaur/storex
 
 #### Basic:
 
-// The store will only run state subscribers/listeners if state is return from a
-// reducer callback.
+The store will only run state subscribers/listeners if state is return from a
+reducer callback.
 
 ```javascript
-const storex = require('@chickendinosaur/storex');
+import { Store, Reducer } from '@chickendinosaur/storex';
 // Base action.
-const Action = require('@chickendinosaur/storex/action');
-// Pre-made actions can be found at '@chickendinosaur/storex/actions'
-const TransactionAction = require('@chickendinosaur/storex/actions/transaction');
+import Action from '@chickendinosaur/storex/action';
+// Pre-made actions can be found in '@chickendinosaur/storex/actions'
+import TransactionAction from '@chickendinosaur/storex/actions/transaction';
 
 var initialState = {
 	a: 1,
@@ -79,14 +78,14 @@ var initialState = {
 	c: 'c'
 };
 
-var reducer = {
+var reducer = new Reducer({
 	a: function (state, action) {
 		if (action.status === 'success') {
 			state.a = action.payload.updated;
 			return state;
 		}
 	}
-};
+});
 
 var listener = function (state) {
 	console.log('State listener called.');

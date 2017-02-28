@@ -8,6 +8,7 @@ if (isBrowser) {
 }
 
 const Store = require('./store');
+const Reducer = require('./reducer');
 const TransactionAction = require('./actions/transaction');
 
 /*
@@ -18,12 +19,12 @@ var initialState = {
 	a: 1
 };
 
-var reducer = {
+var reducer = new Reducer({
 	a: function (state, action) {
 		state.a = action.payload.updated;
 		return state;
 	}
-};
+});
 
 var subscriber = function (state) {};
 

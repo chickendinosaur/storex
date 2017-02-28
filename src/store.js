@@ -1,24 +1,16 @@
 'use strict';
 
+const Reducer = require('./reducer');
+
 module.exports = Store;
 
 /**
 @class Store
 @constructor
+@param {Array|Reducer} reducers
 @param {*} initialState
 */
 function Store(reducers, initialState) {
-	// Allow a single reducer to be passed.
-	if (reducers) {
-		if (reducers.constructor === Array) {
-			reducers[reducers.length] = reducers;
-		} else {
-			reducers = [reducers];
-		}
-	} else {
-		reducers = [];
-	}
-
 	/**
 	@property _state
 	@type {*}
@@ -29,13 +21,21 @@ function Store(reducers, initialState) {
 	@property _reducers
 	@type {Array}
 	*/
-	this._reducers = reducers;
+	this._reducers = [];
 
 	/**
 	@property _stateListeners
 	@type {Array}
 	*/
 	this._stateListeners = null;
+
+	// Add reducers.
+	if (reducers !== undefined &&
+		reducers.constructor === Array) {
+		this.addReducers(reducers);
+	} else {
+		this.addReducer(reducers);
+	}
 }
 
 /**
@@ -43,16 +43,16 @@ function Store(reducers, initialState) {
 @param {Action} action
 */
 Store.prototype.dispatchAction = function (action) {
-	var reduceCallback = null;
+	var actionListener = null;
 	var i = this._reducers.length - 1;
 	var stateDidUpdate = false;
 
 	while (i >= 0) {
-		reduceCallback = this._reducers[i][action.type];
+		actionListener = this._reducers[i]._actionListeners[action.type];
 
 		// If a reduce callback is found, execute it with the state.
-		if (reduceCallback !== undefined) {
-			var updatedState = reduceCallback.call(this, this._state, action);
+		if (actionListener !== undefined) {
+			var updatedState = actionListener.call(this, this._state, action);
 
 			if (updatedState !== undefined) {
 				this._state = updatedState;
@@ -130,8 +130,20 @@ Store.prototype.removeStateListener = function (listener) {
 @param {Object} reducer
 */
 Store.prototype.addReducer = function (reducer) {
-	if (this._reducers.indexOf(reducer) === -1) {
+	if (reducer.constructor === Reducer &&
+		this._reducers.indexOf(reducer) === -1) {
 		this._reducers[this._reducers.length] = reducer;
+	}
+};
+
+/**
+@method addReducers
+@param {Array} reducers
+*/
+Store.prototype.addReducers = function (reducers) {
+	var i = reducers.length;
+	while (--i >= 0) {
+		this.addReducer(reducers[i]);
 	}
 };
 
