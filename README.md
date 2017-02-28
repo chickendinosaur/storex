@@ -5,7 +5,6 @@ Simple and fast application state management system.
 ## Goal
 
 - No dependencies.
-- Similar api/functionality to Redux.
 - Do not force creating a state copy to update state.
 - OOD design for extensibility.
 
