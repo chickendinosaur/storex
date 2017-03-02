@@ -7,8 +7,8 @@
   ],
   "scripts": {
     "benchmark": "tape src/**/*.benchmark.js",
-    "build": "npm run clean && babel src -d build && babel build -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
-    "clean": "rm -rf lib && rm -rf build*",
+    "build": "npm run clean && babel src -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
+    "clean": "rm -rf lib",
     "deploy": "npm run test && npm run build && npm publish lib/",
     "test": "tape src/**/*.test.js | tap-spec"
   },

@@ -10,8 +10,8 @@ const test = tapes(tape, {
 Setup.
 */
 
-const Store = require('./store');
-const Reducer = require('./reducer');
+const Store = require('./index').Store;
+const Reducer = require('./index').Reducer;
 const TransactionStoreAction = require('./actions/transaction');
 
 var store;
