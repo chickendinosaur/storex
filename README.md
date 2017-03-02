@@ -5,9 +5,8 @@ Simple and fast application state management system.
 ## Goal
 
 - No dependencies.
-- Similar api/functionality to Redux.
 - Do not force creating a state copy to update state.
-- OOD design for extendability.
+- OOD design for extensibility.
 
 ## Thoughts
 
@@ -109,13 +108,13 @@ Returning a new object from a reducer callback set's the store state.
 
 ```javascript
 // From a reducer.
-var reducer = {
+var reducer = new Reducer({
 	a: function (state, action) {
 		return {
 			a: 'newA'
 		}
 	}
-};
+});
 ```
 ---  
 
