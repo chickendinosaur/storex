@@ -99,7 +99,7 @@ store.dispatchAction(new TransactionAction('a', {
 	}),
 	'success');
 store.removeReducer(reducer);
-store.removeSubscriber(listener);
+store.removeStateListener(listener);
 ```
 
 #### Creating a fresh state:
@@ -167,4 +167,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
-
