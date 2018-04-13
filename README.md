@@ -18,15 +18,15 @@ Simple and fast application state management system.
 
 npm run benchmark
 
-createStore(reducer) x 5,293,720 ops/sec
-store.dispatchAction(action) x 1,675,277 ops/sec
+createStore(reducer) x 6,886,673 ops/sec
+store.dispatchAction(action) x 1,877,436 ops/sec
 
 ### redux
 
 npm run benchmark-redux
 
-createStore(reducers) x 23,001 ops/sec
-store.dispatch(action) x 74,266 ops/sec
+createStore(reducers) x 25,272 ops/sec
+store.dispatch(action) x 84,803 ops/sec
 
 ## Overhead
 

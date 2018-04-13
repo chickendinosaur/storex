@@ -1,23 +1,23 @@
-declare class Store {
+export declare class IStore {
     state: {};
-    reducers: Reducer[];
+    reducers: null | IReducer[];
     subscribers: null | StoreSubscriber[];
-    constructor(reducers?: Reducer[], initialState?: {});
+    constructor(reducers?: IReducer[], initialState?: {});
     addSubscriber(subscriber: StoreSubscriber): void;
     removeSubscriber(subscriber: StoreSubscriber): void;
-    dispatchAction(action: Action): void;
+    dispatchAction(action: IAction): void;
     update(): void;
-    addReducers(reducers: Reducer[]): void;
+    addReducers(reducers: IReducer[]): void;
     getState(): any;
     setState(value: {}): void;
 }
 
-export interface Action {
+export interface IAction {
     type: string | number;
     payload?: any;
 }
 
-export interface Reducer {
+export interface IReducer {
     id: string | number;
     getInitialState: () => any;
     actionMap: {
@@ -26,6 +26,6 @@ export interface Reducer {
     };
 }
 
-declare type StoreSubscriber = (state: any) => void;
+export declare type StoreSubscriber = (state: any) => void;
 
-declare type ActionCallback = (state: any, action: Action, store: Store) => any;
+export declare type ActionCallback = (state: any, action: IAction) => any;

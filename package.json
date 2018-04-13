@@ -2,8 +2,10 @@
     "name": "@chickendinosaur/storex",
     "version": "8.0.0",
     "main": "lib/index.js",
-    "typings": "lib/index.d.ts",
-    "files": ["lib"],
+    "types": "lib/index.d.ts",
+    "files": [
+        "lib"
+    ],
     "scripts": {
         "benchmark": "ts-node benchmarks/storex.benchmark.ts",
         "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
@@ -42,6 +44,7 @@
     "peerDependencies": {},
     "dependencies": {},
     "devDependencies": {
+        "@types/benchmark": "^1.0.31",
         "benchmark": "^2.1.4",
         "prettier": "^1.12.0",
         "redux": "^3.7.2",

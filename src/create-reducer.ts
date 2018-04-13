@@ -1,6 +1,6 @@
 'use strict';
 
-import { ActionCallback, Reducer } from '../typings';
+import { ActionCallback, IReducer } from '../types';
 
 export default function createReducer(
     id: string | number,
@@ -9,7 +9,7 @@ export default function createReducer(
         [key: string]: ActionCallback;
         [key: number]: ActionCallback;
     }
-): Reducer {
+): IReducer {
     return {
         id,
         getInitialState,

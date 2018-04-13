@@ -1,15 +1,15 @@
 'use strict';
 
-import { Action, ActionCallback, Reducer, StoreSubscriber } from '../typings';
+import { ActionCallback, IAction, IReducer, StoreSubscriber } from '../types';
 
 export default class Store {
     state: { [key: string]: any; [key: number]: any };
-    reducers: Reducer[];
+    reducers: null | IReducer[];
     subscribers: null | StoreSubscriber[];
 
-    constructor(reducers?: Reducer[], initialState?: {}) {
+    constructor(reducers?: IReducer[], initialState?: {}) {
         this.state = initialState || {};
-        this.reducers = [];
+        this.reducers = null;
         this.subscribers = null;
 
         // Apply reducers.
@@ -18,19 +18,23 @@ export default class Store {
         }
     }
 
-    dispatchAction(action: Action): void {
-        let i = this.reducers.length;
+    dispatchAction(action: IAction): IAction {
+        if (this.reducers !== null) {
+            let i = this.reducers.length;
 
-        while (--i >= 0) {
-            const reducer = this.reducers[i];
-            const actionCallback = reducer.actionMap[action.type];
+            while (--i >= 0) {
+                const reducer = this.reducers[i];
+                const actionCallback = reducer.actionMap[action.type];
 
-            if (actionCallback !== undefined) {
-                this.state[reducer.id] = actionCallback(this.state[reducer.id], action, this);
+                if (actionCallback !== undefined) {
+                    this.state[reducer.id] = actionCallback(this.state[reducer.id], action);
+                }
             }
+
+            this.update();
         }
 
-        this.update();
+        return action;
     }
 
     update(): void {
@@ -38,7 +42,7 @@ export default class Store {
             let i = this.subscribers.length;
 
             while (--i >= 0) {
-                this.subscribers[i].call(this, this.state);
+                this.subscribers[i](this.state);
             }
         }
     }
@@ -70,7 +74,7 @@ export default class Store {
         }
     }
 
-    addReducers(reducers: Reducer[]): void {
+    addReducers(reducers: IReducer[]): void {
         let i = reducers.length;
         let reducer;
 
@@ -82,18 +86,22 @@ export default class Store {
                 this.state[reducer.id] = reducer.getInitialState();
             }
 
-            // Prevent duplicate reducers.
-            if (this.reducers.indexOf(reducer) === -1) {
+            if (this.reducers === null) {
+                this.reducers = reducers;
+            } else if (this.reducers.indexOf(reducer) === -1) {
+                // Prevent duplicate reducers.
                 this.reducers.push(reducer);
             }
         }
     }
 
-    removeReducers(reducers: Reducer[]): void {
-        let i = reducers.length;
+    removeReducers(reducers: IReducer[]): void {
+        if (this.reducers !== null) {
+            let i = reducers.length;
 
-        while (--i >= 0) {
-            this.reducers.splice(this.reducers.indexOf(reducers[i]), 1);
+            while (--i >= 0) {
+                this.reducers.splice(this.reducers.indexOf(reducers[i]), 1);
+            }
         }
     }
 }

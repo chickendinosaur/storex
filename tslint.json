@@ -4,7 +4,7 @@
     "rulesDirectory": ["tslint-plugin-prettier"],
     "rules": {
         "prettier": true,
-        "interface-name": [true, "never-prefix"],
+        "interface-name": [true, "always-prefix"],
         "member-access": [true, "no-public"],
         "no-var-requires": false,
         "object-literal-sort-keys": [false]

@@ -2,8 +2,8 @@
 
 import Store from './store';
 
-import { Reducer } from '../typings';
+import { IReducer, IStore } from '../types';
 
-export default function createStore(reducers: Reducer[]): {} {
+export default function createStore(reducers: IReducer[]): IStore {
     return new Store(reducers);
 }
