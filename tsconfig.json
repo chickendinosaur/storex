@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "commonjs",
+        "declaration": true,
+        "outDir": "lib",
+        "strict": true
+    },
+    "typeRoots": ["node_modules/@types", "typings"],
+    "include": ["src/**/*", "typings/**/*"],
+    "exclude": ["src/**/*.test.*"]
+}

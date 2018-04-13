@@ -1,61 +1,70 @@
-# Description  
+# Description
 
-Simple and fast application state management system.
+Simple and fast application state management system. Built using flow-type to alleviate concerns when implementing.
 
 ## Goal
 
 - No dependencies.
 - Do not force creating a state copy to update state.
 - OOD design for extensibility.
+- Easier management of state reducers.
 
-## Thoughts
+---
 
-Why the name Storex? Because it's a store where 'x' can be anything and had to have an 'x' in the name to be as cool as the other guys.
+# Specs
 
----  
-
-# Specs  
-
-## Performance  
+## Performance
 
 ### @chickendinosaur/storex
 
-npm run benchmark  
+npm run benchmark
 
-new Store(reducer, initialState) x 19,719,847 ops/sec  
-.dispatchAction(action) x 19,714,141 ops/sec  
+new Store(reducer, initialState) x 19,719,847 ops/sec
+.dispatchAction(action) x 19,714,141 ops/sec
 
 ### redux
 
-node benchmarks/redux.js  
+node benchmarks/redux.js
 
-.createStore(reducer, initialState) x 815,745 ops/sec  
-.dispatch(action) x 1,021,774 ops/sec  
-.dispatch(action) /w Object.assign x 671,355 ops/sec  
+.createStore(reducer, initialState) x 815,745 ops/sec
+.dispatch(action) x 1,021,774 ops/sec
+.dispatch(action) /w Object.assign x 671,355 ops/sec
 
-## Overhead  
+## Overhead
 
 ### @chickendinosaur/storex
 
-Browserify (minified)  
-
-2103 bytes  
+Browserify (minified): 2103 bytes
 
 ### redux
 
-Browserify (minified)  
+Browserify (minified): 12318 bytes
 
-12318 bytes  
+---
 
----  
-
-# Getting Started  
+# Getting Started
 
 ## Installation
 
-#### npm  
+#### npm
 
-npm install @chickendinosaur/storex
+npm install --save @chickendinosaur/storex
+
+#### flow
+
+To remove flow syntax to run in project install the flow-type preset:
+
+npm install --save babel-preset-flow
+
+Add the preset to the project's .babelrc:
+
+```javascript
+{
+	"presets": [
+    "flow"
+  ]
+}
+```
 
 ## Usage
 
@@ -65,11 +74,7 @@ The store will only run state subscribers/listeners if state is return from a
 reducer callback.
 
 ```javascript
-import { Store, Reducer } from '@chickendinosaur/storex';
-// Base action.
-import Action from '@chickendinosaur/storex/action';
-// Pre-made actions can be found in '@chickendinosaur/storex/actions'
-import TransactionAction from '@chickendinosaur/storex/actions/transaction';
+import Store { Reducer } from '@chickendinosaur/storex';
 
 var initialState = {
 	a: 1,
@@ -93,13 +98,13 @@ var listener = function (state) {
 var store = new Store(reducer, initialState);
 
 store.addReducer(reducer);
-store.addStateListener(listener);
+store.addSubscriber(listener);
 store.dispatchAction(new TransactionAction('a', {
 		updated: true
 	}),
 	'success');
 store.removeReducer(reducer);
-store.removeStateListener(listener);
+store.removeSubscriber(listener);
 ```
 
 #### Creating a fresh state:
@@ -116,25 +121,25 @@ var reducer = new Reducer({
 	}
 });
 ```
----  
+---
 
-# Development  
+# Development
 
-## Installation  
+## Installation
 
 ~/project/:
 
 * npm install
 
-## Build  
+## Build
 
 * npm run build
 
-## Benchmarking  
+## Benchmarking
 
 * npm run benchmark
 
-## Test  
+## Test
 
 * npm run test
 
@@ -142,9 +147,9 @@ var reducer = new Reducer({
 
 * npm run deploy
 
----  
+---
 
-# License  
+# License
 
 The MIT License (MIT)
 

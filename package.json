@@ -1,57 +1,59 @@
 {
-  "name": "@chickendinosaur/storex",
-  "version": "7.0.0",
-  "main": "index.js",
-  "files": [
-    "**/*.js"
-  ],
-  "scripts": {
-    "benchmark": "tape src/**/*.benchmark.js",
-    "build": "npm run clean && babel src -d lib --ignore *.*.js && cp package.json lib & cp README.md lib & cp LICENSE lib",
-    "clean": "rm -rf lib",
-    "deploy": "npm run test && npm run build && npm publish lib/",
-    "test": "tape src/**/*.test.js | tap-spec"
-  },
-  "author": {
-    "name": "John Pittman",
-    "email": "john@chickendinosaur.com",
-    "url": "https://github.com/chickendinosaur"
-  },
-  "license": "MIT",
-  "description": "Simple state management system.",
-  "keywords": [
-    "action",
-    "dispatcher",
-    "distribution",
-    "event",
-    "management",
-    "reducer",
-    "state",
-    "store"
-  ],
-  "private": false,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/chickendinosaur/storex.git"
-  },
-  "bugs": {
-    "url": "https://github.com/chickendinosaur/storex/issues"
-  },
-  "homepage": "https://github.com/chickendinosaur/storex#readme",
-  "module": {
-    "global": false
-  },
-  "devDependencies": {
-    "babel-cli": "^6.23.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.23.0",
-    "benchmark": "^2.1.3",
-    "tap-spec": "^4.1.1",
-    "tape": "^4.6.3",
-    "tapes": "^4.1.0"
-  },
-  "generator-module": {
-    "global": false
-  },
-  "peerDependencies": {},
-  "dependencies": {}
+    "name": "@chickendinosaur/storex",
+    "version": "7.0.0",
+    "main": "lib/index.js",
+    "typings": "lib/index.d.ts",
+    "files": [
+        "lib"
+    ],
+    "scripts": {
+        "benchmark": "ts-node benchmarks/storex.benchmark.ts",
+        "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
+        "build": "npm run clean && tsc",
+        "clean": "rm -rf lib dist",
+        "lint": "tslint --fix \"src/**/*.{ts,tsx}\"",
+        "precommit": "npm run test && npm run lint",
+        "prepare": "npm run test && npm run build",
+        "test": "echo test"
+    },
+    "author": {
+        "name": "John Pittman",
+        "email": "john@chickendinosaur.com",
+        "url": "https://github.com/chickendinosaur"
+    },
+    "license": "MIT",
+    "description": "Front-end state management system.",
+    "keywords": [
+        "action",
+        "dispatcher",
+        "distribution",
+        "event",
+        "management",
+        "reducer",
+        "state",
+        "store"
+    ],
+    "private": false,
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/chickendinosaur/storex.git"
+    },
+    "bugs": {
+        "url": "https://github.com/chickendinosaur/storex/issues"
+    },
+    "homepage": "https://github.com/chickendinosaur/storex#readme",
+    "peerDependencies": {},
+    "dependencies": {},
+    "devDependencies": {
+        "benchmark": "^2.1.4",
+        "prettier": "^1.12.0",
+        "redux": "^3.7.2",
+        "ts-node": "^5.0.1",
+        "tsc": "^1.20150623.0",
+        "tslint": "^5.9.1",
+        "tslint-config-prettier": "^1.10.0",
+        "tslint-plugin-prettier": "^1.3.0",
+        "tslint-react": "^3.5.1",
+        "typescript": "^2.8.1"
+    }
 }
