@@ -30,15 +30,15 @@ export default class Store {
             }
         }
 
-        this.dispatchState(this.state);
+        this.update();
     }
 
-    dispatchState(state: any): void {
+    update(): void {
         if (this.subscribers !== null) {
             let i = this.subscribers.length;
 
             while (--i >= 0) {
-                this.subscribers[i].call(this, state);
+                this.subscribers[i].call(this, this.state);
             }
         }
     }
@@ -49,7 +49,7 @@ export default class Store {
 
     setState(value: {}): void {
         this.state = value;
-        this.dispatchState(value);
+        this.update();
     }
 
     addSubscriber(subscriber: StoreSubscriber): void {
@@ -82,7 +82,10 @@ export default class Store {
                 this.state[reducer.id] = reducer.getInitialState();
             }
 
-            this.reducers.push(reducer);
+            // Prevent duplicate reducers.
+            if (this.reducers.indexOf(reducer) === -1) {
+                this.reducers.push(reducer);
+            }
         }
     }
 
@@ -90,8 +93,6 @@ export default class Store {
         let i = reducers.length;
 
         while (--i >= 0) {
-            this.state[reducers[i].id] = undefined;
-
             this.reducers.splice(this.reducers.indexOf(reducers[i]), 1);
         }
     }

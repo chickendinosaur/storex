@@ -6,7 +6,7 @@ declare class Store {
     addSubscriber(subscriber: StoreSubscriber): void;
     removeSubscriber(subscriber: StoreSubscriber): void;
     dispatchAction(action: Action): void;
-    dispatchState(state: any): void;
+    update(): void;
     addReducers(reducers: Reducer[]): void;
     getState(): any;
     setState(value: {}): void;

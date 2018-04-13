@@ -3,17 +3,14 @@
     "version": "7.0.0",
     "main": "lib/index.js",
     "typings": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
+    "files": ["lib"],
     "scripts": {
         "benchmark": "ts-node benchmarks/storex.benchmark.ts",
         "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
         "build": "npm run clean && tsc",
         "clean": "rm -rf lib dist",
         "lint": "tslint --fix \"src/**/*.{ts,tsx}\"",
-        "precommit": "npm run test && npm run lint",
-        "prepare": "npm run test && npm run build",
+        "prepare": "npm run test && npm run lint && npm run build",
         "test": "echo test"
     },
     "author": {
