@@ -25,7 +25,7 @@ store.dispatchAction(action) x 1,877,436 ops/sec
 
 npm run benchmark-redux
 
-createStore(reducers) x 25,272 ops/sec  
+createStore(combineReducers(reducers)) x 25,272 ops/sec  
 store.dispatch(action) x 84,803 ops/sec
 
 ## Overhead
