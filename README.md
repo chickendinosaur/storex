@@ -18,27 +18,31 @@ Simple and fast application state management system.
 
 ### @chickendinosaur/storex
 
-npm run benchmark
-
+```
 createStore(reducers) x 6,886,673 ops/sec  
 store.dispatchAction(action) x 1,877,436 ops/sec
+```
 
 ### redux
 
-npm run benchmark-redux
-
+```
 createStore(combineReducers(reducers)) x 25,272 ops/sec  
 store.dispatch(action) x 84,803 ops/sec
+```
 
 ## Overhead
 
 ### @chickendinosaur/storex
 
+```
 Browserify (minified): 2122 bytes
+```
 
 ### redux
 
+```
 Browserify (minified): 12191 bytes
+```
 
 ---
 
@@ -48,7 +52,9 @@ Browserify (minified): 12191 bytes
 
 #### npm
 
-npm install --save @chickendinosaur/storex
+```
+$ npm i @chickendinosaur/storex
+```
 
 ## Usage
 
@@ -58,21 +64,29 @@ npm install --save @chickendinosaur/storex
 
 ## Installation
 
-~/project/:
-
-*   npm i
+```
+$ git clone https://github.com/chickendinosaur/storex.git
+$ cd storex
+$ npm i
+```
 
 ## Build
 
-*   npm run build
+```
+$ npm run build
+```
 
 ## Benchmarking
 
-*   npm run benchmark
+```
+$ npm run benchmark
+```
 
 ## Test
 
-*   npm run test
+```
+$ npm run test
+```
 
 ---
 
