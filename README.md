@@ -44,8 +44,6 @@ Browserify (minified): 2122 bytes
 Browserify (minified): 12191 bytes
 ```
 
----
-
 # Getting Started
 
 ## Installation
@@ -57,8 +55,6 @@ $ npm i @chickendinosaur/storex
 ```
 
 ## Usage
-
----
 
 # Development
 
@@ -87,8 +83,6 @@ $ npm run benchmark
 ```
 $ npm run test
 ```
-
----
 
 # License
 
