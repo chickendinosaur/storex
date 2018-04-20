@@ -942,7 +942,8 @@ img { max-width: 100%; }
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
 			<h1 id="description">Description</h1>
-			<p>Simple and fast application state management system.</p>
+			<p>Simple and fast application state management system.  </p>
+			<p><a href="https://chickendinosaur.github.io/storex/">View</a> documentation.</p>
 			<h1 id="goal">Goal</h1>
 			<ul>
 				<li>No dependencies.</li>
@@ -954,45 +955,43 @@ img { max-width: 100%; }
 			<h1 id="specs">Specs</h1>
 			<h2 id="performance">Performance</h2>
 			<h3 id="-chickendinosaur-storex">@chickendinosaur/storex</h3>
-			<p>npm run benchmark</p>
-			<p>createStore(reducer) x 6,886,673 ops/sec
-			store.dispatchAction(action) x 1,877,436 ops/sec</p>
-			<h3 id="redux">redux</h3>
-			<p>npm run benchmark-redux</p>
-			<p>createStore(reducers) x 25,272 ops/sec
-			store.dispatch(action) x 84,803 ops/sec</p>
-			<h2 id="overhead">Overhead</h2>
+			<pre><code>┌──────────────────────────────┬───────────┬──────────────────────────┬─────────────┐
+│ NAME                         │ OPS/SEC   │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
+├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
+│ createStore(reducers)        │ <span class="hljs-number">7</span>,<span class="hljs-number">473</span>,<span class="hljs-number">957</span> │ ± <span class="hljs-number">0.46</span>%                  │ <span class="hljs-number">91</span>          │
+├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
+│ store.dispatchAction(action) │ <span class="hljs-number">2</span>,<span class="hljs-number">032</span>,<span class="hljs-number">960</span> │ ± <span class="hljs-number">0.50</span>%                  │ <span class="hljs-number">93</span>          │
+└──────────────────────────────┴───────────┴──────────────────────────┴─────────────┘
+</code></pre><h3 id="redux">redux</h3>
+			<pre><code>┌────────────────────────────────────────┬─────────┬──────────────────────────┬─────────────┐
+│ NAME                                   │ OPS/SEC │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
+├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
+│ createStore(combineReducers(reducers)) │ <span class="hljs-number">24</span>,<span class="hljs-number">500</span>  │ ± <span class="hljs-number">0.44</span>%                  │ <span class="hljs-number">94</span>          │
+├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
+│ store.dispatch(action)                 │ <span class="hljs-number">83</span>,<span class="hljs-number">416</span>  │ ± <span class="hljs-number">0.52</span>%                  │ <span class="hljs-number">91</span>          │
+└────────────────────────────────────────┴─────────┴──────────────────────────┴─────────────┘
+</code></pre><h2 id="overhead">Overhead</h2>
 			<h3 id="-chickendinosaur-storex">@chickendinosaur/storex</h3>
-			<p>Browserify (minified): 2122 bytes</p>
-			<h3 id="redux">redux</h3>
-			<p>Browserify (minified): 12191 bytes</p>
-			<hr>
-			<h1 id="getting-started">Getting Started</h1>
+			<pre><code><span class="hljs-keyword">Browserify </span>(minified): <span class="hljs-number">2122</span> <span class="hljs-keyword">bytes</span>
+</code></pre><h3 id="redux">redux</h3>
+			<pre><code><span class="hljs-keyword">Browserify </span>(minified): <span class="hljs-number">12191</span> <span class="hljs-keyword">bytes</span>
+</code></pre><h1 id="getting-started">Getting Started</h1>
 			<h2 id="installation">Installation</h2>
 			<h4 id="npm">npm</h4>
-			<p>npm install --save @chickendinosaur/storex</p>
-			<h2 id="usage">Usage</h2>
-			<hr>
+			<pre><code>$ <span class="hljs-built_in">npm</span> i @chickendinosaur/storex
+</code></pre><h2 id="usage">Usage</h2>
 			<h1 id="development">Development</h1>
 			<h2 id="installation">Installation</h2>
-			<p>~/project/:</p>
-			<ul>
-				<li>npm i</li>
-			</ul>
-			<h2 id="build">Build</h2>
-			<ul>
-				<li>npm run build</li>
-			</ul>
-			<h2 id="benchmarking">Benchmarking</h2>
-			<ul>
-				<li>npm run benchmark</li>
-			</ul>
-			<h2 id="test">Test</h2>
-			<ul>
-				<li>npm run test</li>
-			</ul>
-			<hr>
-			<h1 id="license">License</h1>
+			<pre><code><span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span> https://github.com/chickendinosaur/storex.git</span>
+<span class="hljs-meta">$</span><span class="bash"> <span class="hljs-built_in">cd</span> storex</span>
+<span class="hljs-meta">$</span><span class="bash"> npm i</span>
+</code></pre><h2 id="build">Build</h2>
+			<pre><code>$ npm <span class="hljs-keyword">run</span><span class="bash"> build</span>
+</code></pre><h2 id="benchmarking">Benchmarking</h2>
+			<pre><code>$ npm <span class="hljs-keyword">run</span><span class="bash"> benchmark</span>
+</code></pre><h2 id="test">Test</h2>
+			<pre><code>$ npm <span class="hljs-keyword">run</span><span class="bash"> <span class="hljs-built_in">test</span></span>
+</code></pre><h1 id="license">License</h1>
 			<p>The MIT License (MIT)</p>
 			<p>Copyright (c) 2016 John Pittman</p>
 			<p>Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -1152,7 +1151,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in create-reducer.ts:3</li>
+								<li>Defined in <a href="https://github.com/chickendinosaur/storex/blob/a62a547/src/create-reducer.ts#L3">create-reducer.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1186,7 +1185,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in create-store.ts:4</li>
+								<li>Defined in <a href="https://github.com/chickendinosaur/storex/blob/a62a547/src/create-store.ts#L4">create-store.ts:4</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
