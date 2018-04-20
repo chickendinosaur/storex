@@ -4,7 +4,7 @@
         "allowSyntheticDefaultImports": true,
         "alwaysStrict": true,
         "baseUrl": ".",
-        "declaration": true,
+        "declaration": false,
         "declarationDir": "typings",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
