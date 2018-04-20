@@ -1,6 +1,6 @@
 # Description
 
-Simple and fast application state management system.  
+Simple and fast application state management system.
 
 [View](https://chickendinosaur.github.io/storex/) documentation.
 

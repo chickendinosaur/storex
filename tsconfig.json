@@ -5,7 +5,7 @@
         "alwaysStrict": true,
         "baseUrl": ".",
         "declaration": true,
-        "declarationDir": "types",
+        "declarationDir": "typings",
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "jsx": "preserve",

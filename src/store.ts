@@ -1,14 +1,11 @@
-import { Action, Reducer, subscriberCallback } from './types/globals';
+import { Action, Reducer, RootState, subscriberCallback } from './types/globals';
 
 export default class Store {
-    state: {
-        [key: string]: any;
-        [key: number]: any;
-    };
+    state: RootState;
     reducers: null | Reducer[];
     subscribers: null | subscriberCallback[];
 
-    constructor(reducers?: Reducer[], initialState?: {}) {
+    constructor(reducers?: Reducer[], initialState?: RootState) {
         this.state = initialState || {};
         this.reducers = null;
         this.subscribers = null;
@@ -48,11 +45,11 @@ export default class Store {
         }
     }
 
-    getState(): any {
+    getState(): RootState {
         return this.state;
     }
 
-    setState(value: {}): void {
+    setState(value: RootState): void {
         this.state = value;
         this.update();
     }
