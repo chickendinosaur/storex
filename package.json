@@ -3,13 +3,15 @@
     "version": "8.0.2",
     "main": "lib/index.js",
     "typings": "types/index.d.ts",
-    "files": ["lib", "types"],
+    "files": [
+        "lib",
+        "types"
+    ],
     "scripts": {
         "benchmark": "ts-node benchmarks/storex.benchmark.ts",
         "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
         "build": "rm -rf lib types && tsc --allowJS false",
-        "build-docs":
-            "rm -rf docs && typedoc --out docs --target es6 --theme minimal --mode file --exclude **/*.test.ts src",
+        "build-docs": "rm -rf docs && typedoc --out docs --target es6 --theme minimal --mode file --exclude **/*.test.ts src",
         "lint": "tslint --fix \"src/**/*.{ts,tsx}\"",
         "prepare": "npm run test && npm run lint && npm run build",
         "test": "jest"
@@ -51,7 +53,7 @@
         "@types/jest": "^22.2.3",
         "benchmark": "^2.1.4",
         "cli-table2": "^0.2.0",
-        "husky": "^0.14.3",
+        "husky": "^1.0.0-rc.1",
         "jest": "^22.4.3",
         "ora": "^2.0.0",
         "prettier": "^1.12.0",
