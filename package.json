@@ -50,10 +50,8 @@
     "devDependencies": {
         "@types/jest": "^22.2.3",
         "benchmark": "^2.1.4",
-        "cli-table2": "^0.2.0",
         "husky": "^1.0.0-rc.1",
         "jest": "^22.4.3",
-        "ora": "^2.0.0",
         "prettier": "^1.12.0",
         "redux": "^3.7.2",
         "ts-jest": "^22.4.4",

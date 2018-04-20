@@ -1,7 +1,5 @@
 // @ts-ignore
 import Benchmark, { Suite } from 'benchmark';
-import * as Table from 'cli-table2';
-import * as ora from 'ora';
 
 /*
 Benchmark config.
@@ -9,39 +7,21 @@ Benchmark config.
 
 const suite = new Suite();
 const isBrowser = typeof window === 'object';
-const benchmarkResults = [];
-const spinner = ora(`Running benchmark`);
 
 if (isBrowser) {
     // @ts-ignore
     window.Benchmark = Benchmark;
 }
 
-function showResults(results) {
-    const table = new Table({
-        head: [`NAME`, `OPS/SEC`, `RELATIVE MARGIN OF ERROR`, `SAMPLE SIZE`]
-    });
-
-    results.forEach((result) => {
-        // @ts-ignore
-        table.push([
-            result.target.name,
-            result.target.hz.toLocaleString(`en-US`, { maximumFractionDigits: 0 }),
-            `± ${result.target.stats.rme.toFixed(2)}%`,
-            result.target.stats.sample.length
-        ]);
-    });
-
+function onCycle(event) {
+    let output = String(event.target);
+    output = output.substring(0, output.indexOf('ops/sec') + 7);
     // tslint:disable-next-line
-    console.log(table.toString());
+    console.log('\x1b[33m%s\x1b[0m', output);
 }
 
 function onComplete() {
-    spinner.stop();
-
-    showResults(benchmarkResults);
-
-    if (typeof window === 'object') {
+    if (isBrowser) {
         window.close();
     }
 }
@@ -123,8 +103,6 @@ suite
             }
         });
     })
-    .on('cycle', (event) => {
-        benchmarkResults.push(event);
-    })
+    .on('cycle', onCycle)
     .on('complete', onComplete)
     .run({ async: false });
