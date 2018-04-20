@@ -1,21 +1,56 @@
-'use strict';
+// @ts-ignore
+import Benchmark, { Suite } from 'benchmark';
+import * as Table from 'cli-table2';
+import * as ora from 'ora';
 
-import { Suite } from 'benchmark';
-import 'lodash';
-
-import { combineReducers, createStore } from 'redux';
+/*
+Benchmark config.
+*/
 
 const suite = new Suite();
 const isBrowser = typeof window === 'object';
+const benchmarkResults = [];
+const spinner = ora(`Running benchmark`);
 
 if (isBrowser) {
     // @ts-ignore
     window.Benchmark = Benchmark;
 }
 
+function showResults(results) {
+    const table = new Table({
+        head: [`NAME`, `OPS/SEC`, `RELATIVE MARGIN OF ERROR`, `SAMPLE SIZE`]
+    });
+
+    results.forEach((result) => {
+        // @ts-ignore
+        table.push([
+            result.target.name,
+            result.target.hz.toLocaleString(`en-US`, { maximumFractionDigits: 0 }),
+            `± ${result.target.stats.rme.toFixed(2)}%`,
+            result.target.stats.sample.length
+        ]);
+    });
+
+    // tslint:disable-next-line
+    console.log(table.toString());
+}
+
+function onComplete() {
+    spinner.stop();
+
+    showResults(benchmarkResults);
+
+    if (typeof window === 'object') {
+        window.close();
+    }
+}
+
 /*
 Setup.
 */
+
+import { combineReducers, createStore } from 'redux';
 
 const reducer1 = (
     state = {
@@ -81,7 +116,7 @@ Teardown
 */
 
 suite
-    .add('createStore(reducers)', () => {
+    .add('createStore(combineReducers(reducers))', () => {
         createStore(
             combineReducers({
                 reducer1,
@@ -98,15 +133,8 @@ suite
         });
     })
     .on('cycle', (event) => {
-        let output = String(event.target);
-        output = output.substring(0, output.indexOf('ops/sec') + 7);
-        // tslint:disable-next-line
-        console.log('\x1b[33m%s\x1b[0m', `\t${output}`);
+        benchmarkResults.push(event);
     })
-    .on('complete', () => {
-        if (typeof window === 'object') {
-            window.close();
-        }
-    })
+    .on('complete', onComplete)
     // Run async
     .run({ async: false });

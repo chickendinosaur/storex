@@ -1,13 +1,14 @@
-'use strict';
-
-import { ActionCallback, IAction, IReducer, StoreSubscriber } from '../types';
+import { Action, Reducer, subscriberCallback } from './types/globals';
 
 export default class Store {
-    state: { [key: string]: any; [key: number]: any };
-    reducers: null | IReducer[];
-    subscribers: null | StoreSubscriber[];
+    state: {
+        [key: string]: any;
+        [key: number]: any;
+    };
+    reducers: null | Reducer[];
+    subscribers: null | subscriberCallback[];
 
-    constructor(reducers?: IReducer[], initialState?: {}) {
+    constructor(reducers?: Reducer[], initialState?: {}) {
         this.state = initialState || {};
         this.reducers = null;
         this.subscribers = null;
@@ -18,7 +19,7 @@ export default class Store {
         }
     }
 
-    dispatchAction(action: IAction): IAction {
+    dispatchAction(action: Action): Action {
         if (this.reducers !== null) {
             let i = this.reducers.length;
 
@@ -56,7 +57,7 @@ export default class Store {
         this.update();
     }
 
-    addSubscriber(subscriber: StoreSubscriber): void {
+    addSubscriber(subscriber: subscriberCallback): void {
         if (this.subscribers === null) {
             this.subscribers = [];
         }
@@ -64,7 +65,7 @@ export default class Store {
         this.subscribers[this.subscribers.length] = subscriber;
     }
 
-    removeSubscriber(subscriber: StoreSubscriber): void {
+    removeSubscriber(subscriber: subscriberCallback): void {
         if (this.subscribers !== null) {
             if (this.subscribers.length === 1) {
                 this.subscribers = null;
@@ -74,7 +75,7 @@ export default class Store {
         }
     }
 
-    addReducers(reducers: IReducer[]): void {
+    addReducers(reducers: Reducer[]): void {
         let i = reducers.length;
         let reducer;
 
@@ -83,7 +84,7 @@ export default class Store {
 
             if (this.state[reducer.id] === undefined) {
                 // Generate initial state for the given state key only if it has not been set.
-                this.state[reducer.id] = reducer.getInitialState();
+                this.state[reducer.id] = reducer.getDefaultState();
             }
 
             if (this.reducers === null) {
@@ -95,7 +96,7 @@ export default class Store {
         }
     }
 
-    removeReducers(reducers: IReducer[]): void {
+    removeReducers(reducers: Reducer[]): void {
         if (this.reducers !== null) {
             let i = reducers.length;
 

@@ -1,18 +1,16 @@
-'use strict';
-
-import { ActionCallback, IReducer } from '../types';
+import { actionCallback, getDefaultStateCallback, Reducer } from './types/globals';
 
 export default function createReducer(
     id: string | number,
-    getInitialState: () => any,
+    getDefaultState: getDefaultStateCallback,
     actionMap: {
-        [key: string]: ActionCallback;
-        [key: number]: ActionCallback;
+        [key: string]: actionCallback;
+        [key: number]: actionCallback;
     }
-): IReducer {
+): Reducer {
     return {
         id,
-        getInitialState,
+        getDefaultState,
         actionMap
     };
 }

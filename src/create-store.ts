@@ -1,9 +1,6 @@
-'use strict';
-
 import Store from './store';
+import { Reducer } from './types/globals';
 
-import { IReducer, IStore } from '../types';
-
-export default function createStore(reducers: IReducer[]): IStore {
+export default function createStore(reducers: Reducer[]): Store {
     return new Store(reducers);
 }

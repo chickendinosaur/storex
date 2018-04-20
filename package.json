@@ -2,18 +2,22 @@
     "name": "@chickendinosaur/storex",
     "version": "8.0.2",
     "main": "lib/index.js",
-    "types": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
+    "typings": "types/index.d.ts",
+    "files": ["lib", "types"],
     "scripts": {
         "benchmark": "ts-node benchmarks/storex.benchmark.ts",
         "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
-        "build": "npm run clean && tsc",
-        "clean": "rm -rf lib dist",
+        "build": "rm -rf lib types && tsc --allowJS false",
+        "build-docs":
+            "rm -rf docs && typedoc --out docs --target es6 --theme minimal --mode file --exclude **/*.test.ts src",
         "lint": "tslint --fix \"src/**/*.{ts,tsx}\"",
         "prepare": "npm run test && npm run lint && npm run build",
-        "test": "echo test"
+        "test": "jest"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run test && npm run lint && npm run build-docs"
+        }
     },
     "author": {
         "name": "John Pittman",
@@ -44,16 +48,22 @@
     "peerDependencies": {},
     "dependencies": {},
     "devDependencies": {
-        "@types/benchmark": "^1.0.31",
+        "@types/jest": "^22.2.3",
         "benchmark": "^2.1.4",
+        "cli-table2": "^0.2.0",
+        "husky": "^0.14.3",
+        "jest": "^22.4.3",
+        "ora": "^2.0.0",
         "prettier": "^1.12.0",
         "redux": "^3.7.2",
+        "ts-jest": "^22.4.4",
         "ts-node": "^5.0.1",
         "tsc": "^1.20150623.0",
         "tslint": "^5.9.1",
-        "tslint-config-prettier": "^1.10.0",
+        "tslint-config-prettier": "^1.12.0",
         "tslint-plugin-prettier": "^1.3.0",
         "tslint-react": "^3.5.1",
+        "typedoc": "^0.11.1",
         "typescript": "^2.8.1"
     }
 }

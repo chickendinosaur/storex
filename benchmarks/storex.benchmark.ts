@@ -1,21 +1,56 @@
-'use strict';
+// @ts-ignore
+import Benchmark, { Suite } from 'benchmark';
+import * as Table from 'cli-table2';
+import * as ora from 'ora';
 
-import { Suite } from 'benchmark';
-import 'lodash';
-
-import { createReducer, createStore } from '../src';
+/*
+Benchmark config.
+*/
 
 const suite = new Suite();
 const isBrowser = typeof window === 'object';
+const benchmarkResults = [];
+const spinner = ora(`Running benchmark`);
 
 if (isBrowser) {
     // @ts-ignore
     window.Benchmark = Benchmark;
 }
 
+function showResults(results) {
+    const table = new Table({
+        head: [`NAME`, `OPS/SEC`, `RELATIVE MARGIN OF ERROR`, `SAMPLE SIZE`]
+    });
+
+    results.forEach((result) => {
+        // @ts-ignore
+        table.push([
+            result.target.name,
+            result.target.hz.toLocaleString(`en-US`, { maximumFractionDigits: 0 }),
+            `± ${result.target.stats.rme.toFixed(2)}%`,
+            result.target.stats.sample.length
+        ]);
+    });
+
+    // tslint:disable-next-line
+    console.log(table.toString());
+}
+
+function onComplete() {
+    spinner.stop();
+
+    showResults(benchmarkResults);
+
+    if (typeof window === 'object') {
+        window.close();
+    }
+}
+
 /*
 Setup.
 */
+
+import { createReducer, createStore } from '../src';
 
 const getInitialState1 = () => {
     return {
@@ -77,7 +112,7 @@ Benchmark
 */
 
 suite
-    .add('createStore(reducer)', () => {
+    .add('createStore(reducers)', () => {
         createStore([reducer1, reducer2]);
     })
     .add('store.dispatchAction(action)', () => {
@@ -89,15 +124,7 @@ suite
         });
     })
     .on('cycle', (event) => {
-        let output = String(event.target);
-        output = output.substring(0, output.indexOf('ops/sec') + 7);
-        // tslint:disable-next-line
-        console.log('\x1b[33m%s\x1b[0m', output);
+        benchmarkResults.push(event);
     })
-    .on('complete', () => {
-        if (isBrowser) {
-            window.close();
-        }
-    })
-    // Run async
+    .on('complete', onComplete)
     .run({ async: false });
