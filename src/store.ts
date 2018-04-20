@@ -1,4 +1,4 @@
-import { Action, Reducer, RootState, subscriberCallback } from './types/globals';
+import { Action, Reducer, RootState, subscriberCallback } from './globals';
 
 export default class Store {
     state: RootState;

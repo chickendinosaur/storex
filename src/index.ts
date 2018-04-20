@@ -8,6 +8,6 @@ import {
     Reducer,
     RootState,
     subscriberCallback
-} from './types/globals';
+} from './globals';
 
 export { Action, actionCallback, createReducer, createStore, Reducer, subscriberCallback };
