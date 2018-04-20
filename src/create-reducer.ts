@@ -1,7 +1,7 @@
 import { actionCallback, getDefaultStateCallback, Reducer } from './types/globals';
 
 export default function createReducer(
-    id: string | number,
+    id: string,
     getDefaultState: getDefaultStateCallback,
     actionMap: {
         [key: string]: actionCallback;
