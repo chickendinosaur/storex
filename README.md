@@ -1,6 +1,8 @@
 # Description
 
-Simple and fast application state management system.
+Simple and fast application state management system.  
+
+[View](https://chickendinosaur.github.io/storex/) documentation.
 
 # Goal
 
@@ -16,29 +18,41 @@ Simple and fast application state management system.
 
 ### @chickendinosaur/storex
 
-npm run benchmark
-
-createStore(reducer) x 6,886,673 ops/sec
-store.dispatchAction(action) x 1,877,436 ops/sec
+```
+┌──────────────────────────────┬───────────┬──────────────────────────┬─────────────┐
+│ NAME                         │ OPS/SEC   │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
+├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
+│ createStore(reducers)        │ 7,473,957 │ ± 0.46%                  │ 91          │
+├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
+│ store.dispatchAction(action) │ 2,032,960 │ ± 0.50%                  │ 93          │
+└──────────────────────────────┴───────────┴──────────────────────────┴─────────────┘
+```
 
 ### redux
 
-npm run benchmark-redux
-
-createStore(reducers) x 25,272 ops/sec
-store.dispatch(action) x 84,803 ops/sec
+```
+┌────────────────────────────────────────┬─────────┬──────────────────────────┬─────────────┐
+│ NAME                                   │ OPS/SEC │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
+├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
+│ createStore(combineReducers(reducers)) │ 24,500  │ ± 0.44%                  │ 94          │
+├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
+│ store.dispatch(action)                 │ 83,416  │ ± 0.52%                  │ 91          │
+└────────────────────────────────────────┴─────────┴──────────────────────────┴─────────────┘
+```
 
 ## Overhead
 
 ### @chickendinosaur/storex
 
+```
 Browserify (minified): 2122 bytes
+```
 
 ### redux
 
+```
 Browserify (minified): 12191 bytes
-
----
+```
 
 # Getting Started
 
@@ -46,33 +60,39 @@ Browserify (minified): 12191 bytes
 
 #### npm
 
-npm install --save @chickendinosaur/storex
+```
+$ npm i @chickendinosaur/storex
+```
 
 ## Usage
-
----
 
 # Development
 
 ## Installation
 
-~/project/:
-
-*   npm i
+```
+$ git clone https://github.com/chickendinosaur/storex.git
+$ cd storex
+$ npm i
+```
 
 ## Build
 
-*   npm run build
+```
+$ npm run build
+```
 
 ## Benchmarking
 
-*   npm run benchmark
+```
+$ npm run benchmark
+```
 
 ## Test
 
-*   npm run test
-
----
+```
+$ npm run test
+```
 
 # License
 
