@@ -1,5 +1,5 @@
 import Store from './store';
-import { Reducer } from './types/globals';
+import { actionCallback, getDefaultStateCallback, Reducer } from './types/globals';
 
 export default function createStore(reducers: Reducer[]): Store {
     return new Store(reducers);

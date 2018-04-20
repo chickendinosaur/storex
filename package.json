@@ -16,7 +16,7 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "npm run test && npm run lint && npm run build-docs"
+            "pre-commit": "npm run test && npm run build-docs && git add --all && npm run lint"
         }
     },
     "author": {

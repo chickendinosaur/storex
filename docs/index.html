@@ -916,6 +916,9 @@ img { max-width: 100%; }
 			<a href="interfaces/action.html" class="tsd-kind-icon">Action</a>
 		</li>
 		<li class=" tsd-kind-interface">
+			<a href="interfaces/actionmap.html" class="tsd-kind-icon">Action<wbr>Map</a>
+		</li>
+		<li class=" tsd-kind-interface">
 			<a href="interfaces/reducer.html" class="tsd-kind-icon">Reducer</a>
 		</li>
 		<li class=" tsd-kind-interface">
@@ -1025,6 +1028,7 @@ img { max-width: 100%; }
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-interface"><a href="interfaces/action.html" class="tsd-kind-icon">Action</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/actionmap.html" class="tsd-kind-icon">Action<wbr>Map</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/reducer.html" class="tsd-kind-icon">Reducer</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/rootstate.html" class="tsd-kind-icon">Root<wbr>State</a></li>
 						</ul>
@@ -1146,13 +1150,13 @@ img { max-width: 100%; }
 				<a name="createreducer" class="tsd-anchor"></a>
 				<h3>create<wbr>Reducer</h3>
 				<ul class="tsd-signatures tsd-kind-function">
-					<li class="tsd-signature tsd-kind-icon">create<wbr>Reducer<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, getDefaultState<span class="tsd-signature-symbol">: </span><a href="globals.html#getdefaultstatecallback" class="tsd-signature-type">getDefaultStateCallback</a>, actionMap<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/reducer.html" class="tsd-signature-type">Reducer</a></li>
+					<li class="tsd-signature tsd-kind-icon">create<wbr>Reducer<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, getDefaultState<span class="tsd-signature-symbol">: </span><a href="globals.html#getdefaultstatecallback" class="tsd-signature-type">getDefaultStateCallback</a>, actionMap<span class="tsd-signature-symbol">: </span><a href="interfaces/actionmap.html" class="tsd-signature-type">ActionMap</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/reducer.html" class="tsd-signature-type">Reducer</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/chickendinosaur/storex/blob/0ae2177/src/create-reducer.ts#L3">create-reducer.ts:3</a></li>
+								<li>Defined in create-reducer.ts:3</li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1164,12 +1168,7 @@ img { max-width: 100%; }
 								<h5>getDefaultState: <a href="globals.html#getdefaultstatecallback" class="tsd-signature-type">getDefaultStateCallback</a></h5>
 							</li>
 							<li>
-								<h5>actionMap: <span class="tsd-signature-type">object</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-index-signature">
-										<h5><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">]: </span><a href="globals.html#actioncallback" class="tsd-signature-type">actionCallback</a></h5>
-									</li>
-								</ul>
+								<h5>actionMap: <a href="interfaces/actionmap.html" class="tsd-signature-type">ActionMap</a></h5>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <a href="interfaces/reducer.html" class="tsd-signature-type">Reducer</a></h4>
@@ -1186,7 +1185,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/chickendinosaur/storex/blob/0ae2177/src/create-store.ts#L4">create-store.ts:4</a></li>
+								<li>Defined in create-store.ts:4</li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

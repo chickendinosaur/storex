@@ -1,12 +1,9 @@
-import { actionCallback, getDefaultStateCallback, Reducer } from './types/globals';
+import { actionCallback, ActionMap, getDefaultStateCallback, Reducer } from './types/globals';
 
 export default function createReducer(
     id: string,
     getDefaultState: getDefaultStateCallback,
-    actionMap: {
-        [key: string]: actionCallback;
-        [key: number]: actionCallback;
-    }
+    actionMap: ActionMap
 ): Reducer {
     return {
         id,
