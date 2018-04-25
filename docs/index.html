@@ -958,21 +958,11 @@ img { max-width: 100%; }
 			<h1 id="specs">Specs</h1>
 			<h2 id="performance">Performance</h2>
 			<h3 id="-chickendinosaur-storex">@chickendinosaur/storex</h3>
-			<pre><code>┌──────────────────────────────┬───────────┬──────────────────────────┬─────────────┐
-│ NAME                         │ OPS/SEC   │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
-├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
-│ createStore(reducers)        │ <span class="hljs-number">7</span>,<span class="hljs-number">473</span>,<span class="hljs-number">957</span> │ ± <span class="hljs-number">0.46</span>%                  │ <span class="hljs-number">91</span>          │
-├──────────────────────────────┼───────────┼──────────────────────────┼─────────────┤
-│ store.dispatchAction(action) │ <span class="hljs-number">2</span>,<span class="hljs-number">032</span>,<span class="hljs-number">960</span> │ ± <span class="hljs-number">0.50</span>%                  │ <span class="hljs-number">93</span>          │
-└──────────────────────────────┴───────────┴──────────────────────────┴─────────────┘
+			<pre><code>createStore(reducers) x <span class="hljs-number">8</span>,<span class="hljs-number">916</span>,<span class="hljs-number">356</span> ops/sec
+store.dispatchAction(action) x <span class="hljs-number">10</span>,<span class="hljs-number">316</span>,<span class="hljs-number">533</span> ops/sec
 </code></pre><h3 id="redux">redux</h3>
-			<pre><code>┌────────────────────────────────────────┬─────────┬──────────────────────────┬─────────────┐
-│ NAME                                   │ OPS/SEC │ RELATIVE MARGIN OF ERROR │ SAMPLE SIZE │
-├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
-│ createStore(combineReducers(reducers)) │ <span class="hljs-number">24</span>,<span class="hljs-number">500</span>  │ ± <span class="hljs-number">0.44</span>%                  │ <span class="hljs-number">94</span>          │
-├────────────────────────────────────────┼─────────┼──────────────────────────┼─────────────┤
-│ store.dispatch(action)                 │ <span class="hljs-number">83</span>,<span class="hljs-number">416</span>  │ ± <span class="hljs-number">0.52</span>%                  │ <span class="hljs-number">91</span>          │
-└────────────────────────────────────────┴─────────┴──────────────────────────┴─────────────┘
+			<pre><code>createStore(combineReducers(reducers)) x <span class="hljs-number">24</span>,<span class="hljs-number">604</span> ops/sec
+store.dispatch(action) x <span class="hljs-number">96</span>,<span class="hljs-number">825</span> ops/sec
 </code></pre><h2 id="overhead">Overhead</h2>
 			<h3 id="-chickendinosaur-storex">@chickendinosaur/storex</h3>
 			<pre><code><span class="hljs-keyword">Browserify </span>(minified): <span class="hljs-number">2122</span> <span class="hljs-keyword">bytes</span>
@@ -1059,7 +1049,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">action<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in globals.ts:11</li>
+						<li>Defined in create-reducer.ts:13</li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1093,7 +1083,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">get<wbr>Default<wbr>State<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in globals.ts:12</li>
+						<li>Defined in create-reducer.ts:14</li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1118,7 +1108,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">subscriber<wbr>Callback<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in globals.ts:13</li>
+						<li>Defined in store.ts:9</li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1156,7 +1146,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in create-reducer.ts:3</li>
+								<li>Defined in create-reducer.ts:16</li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1185,7 +1175,7 @@ img { max-width: 100%; }
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in create-store.ts:4</li>
+								<li>Defined in create-store.ts:5</li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>

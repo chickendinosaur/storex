@@ -32,64 +32,41 @@ Setup.
 
 import { combineReducers, createStore } from 'redux';
 
-const reducer1 = (
-    state = {
-        a: 1,
-        b: 2
-    },
-    action
-) => {
+import { action1 } from '../mocks/actions';
+import { defaultStateCallback } from '../mocks/default-state-callbacks';
+
+const reducer1 = (state = defaultStateCallback(), action) => {
     switch (action.type) {
-        case 'a':
-            return {
-                ...state,
-                a: action.payload.updated
-            };
-        case 'b':
-            return {
-                ...state,
-                b: action.payload.updated
-            };
+        case 'ACTION_1':
+            return state + action.payload;
+        case 'ACTION_2':
+            return state + action.payload;
         default:
             return state;
     }
 };
 
-const reducer2 = (
-    state = {
-        c: 3,
-        d: 4
-    },
-    action
-) => {
+const reducer2 = (state = defaultStateCallback(), action) => {
     switch (action.type) {
-        case 'c':
-            return {
-                ...state,
-                c: action.payload.updated
-            };
-        case 'd':
-            return {
-                ...state,
-                d: action.payload.updated
-            };
+        case 'ACTION_1':
+            return state + action.payload;
+        case 'ACTION_2':
+            return state + action.payload;
         default:
             return state;
     }
 };
 
 const rootReducer = combineReducers({
-    '1': reducer1,
-    '2': reducer2
+    reducer1,
+    reducer2
 });
 
 const store = createStore(rootReducer);
 
-function subscriber() {
-    store.getState();
-}
-
-store.subscribe(subscriber);
+store.subscribe(() => {
+    const val = store.getState();
+});
 
 /*
 Teardown
@@ -105,12 +82,7 @@ suite
         );
     })
     .add('store.dispatch(action)', () => {
-        store.dispatch({
-            type: 'd',
-            payload: {
-                updated: true
-            }
-        });
+        store.dispatch(action1);
     })
     .on('cycle', onCycle)
     .on('complete', onComplete)

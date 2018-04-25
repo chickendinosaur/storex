@@ -1,4 +1,13 @@
-import { Action, Reducer, RootState, subscriberCallback } from './globals';
+import { Reducer } from './create-reducer';
+export interface Action {
+    type: string;
+    payload?: any;
+    [key: string]: any;
+}
+export declare type subscriberCallback = (state: RootState) => void;
+export interface RootState {
+    [key: string]: any;
+}
 export default class Store {
     state: RootState;
     reducers: null | Reducer[];

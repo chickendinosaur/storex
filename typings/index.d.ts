@@ -1,4 +1,4 @@
-import createReducer from './create-reducer';
+import createReducer, { actionCallback, Reducer } from './create-reducer';
 import createStore from './create-store';
-import { Action, actionCallback, Reducer, subscriberCallback } from './globals';
+import { Action, subscriberCallback } from './store';
 export { Action, actionCallback, createReducer, createStore, Reducer, subscriberCallback };

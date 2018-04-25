@@ -1,4 +1,16 @@
-import { Action, Reducer, RootState, subscriberCallback } from './globals';
+import { Reducer } from './create-reducer';
+
+export interface Action {
+    type: string;
+    payload?: any;
+    [key: string]: any;
+}
+
+export declare type subscriberCallback = (state: RootState) => void;
+
+export interface RootState {
+    [key: string]: any;
+}
 
 export default class Store {
     state: RootState;
@@ -59,7 +71,7 @@ export default class Store {
             this.subscribers = [];
         }
 
-        this.subscribers[this.subscribers.length] = subscriber;
+        this.subscribers.push(subscriber);
     }
 
     removeSubscriber(subscriber: subscriberCallback): void {
@@ -73,10 +85,11 @@ export default class Store {
     }
 
     addReducers(reducers: Reducer[]): void {
-        let i = reducers.length;
+        const reducersLen = reducers.length;
+        let i = 0;
         let reducer;
 
-        while (--i >= 0) {
+        for (; i < reducersLen; ++i) {
             reducer = reducers[i];
 
             if (this.state[reducer.id] === undefined) {

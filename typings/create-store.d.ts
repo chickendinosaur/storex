@@ -1,3 +1,3 @@
-import { Reducer } from './globals';
 import Store from './store';
-export default function createStore(reducers: Reducer[]): Store;
+import { Reducer } from './create-reducer';
+export default function createStore(reducers?: Reducer[]): Store;

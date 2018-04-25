@@ -1,13 +1,5 @@
-import createReducer from './create-reducer';
+import createReducer, { actionCallback, getDefaultStateCallback, Reducer } from './create-reducer';
 import createStore from './create-store';
-
-import {
-    Action,
-    actionCallback,
-    getDefaultStateCallback,
-    Reducer,
-    RootState,
-    subscriberCallback
-} from './globals';
+import { Action, RootState, subscriberCallback } from './store';
 
 export { Action, actionCallback, createReducer, createStore, Reducer, subscriberCallback };

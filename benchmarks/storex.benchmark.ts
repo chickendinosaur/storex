@@ -32,60 +32,14 @@ Setup.
 
 import { createReducer, createStore } from '../src';
 
-const getInitialState1 = () => {
-    return {
-        a: null,
-        b: null
-    };
-};
-
-const actionMap1 = {
-    a: (state, action) => {
-        return {
-            ...state,
-            a: action.payload.updated
-        };
-    },
-    b: (state, action) => {
-        return {
-            ...state,
-            b: action.payload.updated
-        };
-    }
-};
-
-const reducer1 = createReducer('reducer1', getInitialState1, actionMap1);
-
-const getInitialState2 = () => {
-    return {
-        c: null,
-        d: null
-    };
-};
-
-const actionMap2 = {
-    c: (state, action) => {
-        return {
-            ...state,
-            c: action.payload.updated
-        };
-    },
-    d: (state, action) => {
-        return {
-            ...state,
-            d: action.payload.updated
-        };
-    }
-};
-
-const reducer2 = createReducer('reducer2', getInitialState2, actionMap2);
+import { action1 } from '../mocks/actions';
+import { reducer1, reducer2 } from '../mocks/reducers';
 
 const store = createStore([reducer1, reducer2]);
 
-const subscriber = (state) => {
-    return state;
-};
-store.addSubscriber(subscriber);
+store.addSubscriber((state) => {
+    const val = state.reducer1;
+});
 
 /*
 Benchmark
@@ -96,12 +50,7 @@ suite
         createStore([reducer1, reducer2]);
     })
     .add('store.dispatchAction(action)', () => {
-        store.dispatchAction({
-            type: 'd',
-            payload: {
-                updated: true
-            }
-        });
+        store.dispatchAction(action1);
     })
     .on('cycle', onCycle)
     .on('complete', onComplete)

@@ -7,9 +7,9 @@ module.exports = {
     },
     projects: ['./src'],
     setupTestFrameworkScriptFile: '<rootDir>/jest.setup.js',
+    testEnvironment: 'node',
+    testRegex: '.\\.test\\.(js?|jsx?|ts?|tsx?)$',
     transform: {
         '\\.js$|\\.jsx$|\\.ts$|\\.tsx$': 'ts-jest'
-    },
-    testEnvironment: 'node',
-    testRegex: '.\\.test\\.(js?|jsx?|ts?|tsx?)$'
+    }
 };
