@@ -1,15 +1,17 @@
 {
     "name": "@chickendinosaur/storex",
-    "version": "8.0.3",
+    "version": "8.0.4",
     "main": "lib/index.js",
     "typings": "typings/index.d.ts",
-    "files": ["lib", "typings"],
+    "files": [
+        "lib",
+        "typings"
+    ],
     "scripts": {
         "benchmark": "ts-node benchmarks/storex.benchmark.ts",
         "benchmark-redux": "ts-node benchmarks/redux.benchmark.ts",
         "build": "rm -rf lib typings && tsc --allowJS false --declaration",
-        "build-docs":
-            "rm -rf docs && typedoc --out docs --theme minimal --mode file --exclude **/*.test.ts src",
+        "build-docs": "rm -rf docs && typedoc --out docs --theme minimal --mode file --exclude **/*.test.ts src",
         "lint": "tslint --fix \"src/**/*.{ts,tsx}\"",
         "prepare": "npm run test && npm run lint && npm run build",
         "test": "jest -o",
